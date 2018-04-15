@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.web;
 
+import com.thoughtworks.ketsu.domain.logistic.Logistic;
 import com.thoughtworks.ketsu.domain.order.Order;
 import com.thoughtworks.ketsu.domain.payment.Payment;
 import com.thoughtworks.ketsu.infrastructure.repositories.LogisticRepository;
@@ -31,7 +32,7 @@ public class OrderApi {
         return order;
     }
 
-    @Path("/payments")
+    @Path("/payment")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createPayment(Map<String, Object> info,
@@ -53,11 +54,18 @@ public class OrderApi {
         }
     }
 
-    @Path("/payments")
+    @Path("/payment")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Payment getPayment(@Context PaymentRepository paymentRepository) throws URISyntaxException {
         return paymentRepository.getPayment(order.getId());
+    }
+
+    @Path("/logistic")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Logistic getLogistic(@Context LogisticRepository logisticRepository) throws URISyntaxException {
+        return logisticRepository.getLogistic(order.getId());
     }
 }
 

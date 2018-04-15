@@ -154,7 +154,7 @@ public class OrderApiTest extends ApiSupport {
 
     @Test
     public void should_return_201_when_post_payment_success() throws Exception {
-        Response post = post("/orders/1/payments", new HashMap(){{
+        Response post = post("/orders/1/payment", new HashMap(){{
             put("pay_type","1");
         }});
         assertThat(post.getStatus(), is(201));
@@ -162,13 +162,19 @@ public class OrderApiTest extends ApiSupport {
 
     @Test
     public void should_return_400_when_post_payment_fail() throws Exception {
-        Response post = post("/orders/1/payments", new HashMap<>());
+        Response post = post("/orders/1/payment", new HashMap<>());
         assertThat(post.getStatus(), is(400));
     }
 
     @Test
-    public void shoulr_return_200_when_get_payment_success() throws Exception {
-        Response get = get("/orders/2/payments");
+    public void should_return_200_when_get_payment_success() throws Exception {
+        Response get = get("/orders/2/payment");
+        assertThat(get.getStatus(), is(200));
+    }
+
+    @Test
+    public void should_return_200_when_get_logistic_success() throws Exception {
+        Response get = get("/orders/2/logistic");
         assertThat(get.getStatus(), is(200));
     }
 }

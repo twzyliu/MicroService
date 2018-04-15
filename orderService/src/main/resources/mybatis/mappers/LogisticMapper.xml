@@ -7,4 +7,8 @@
         INSERT INTO logistics (order_id, time)
         VALUES (#{info.order_id}, #{info.time});
     </insert>
+
+    <select id="getLogistic" resultMap="records.logistic">
+        SELECT * FROM logistics WHERE order_id=#{oid}
+    </select>
 </mapper>
