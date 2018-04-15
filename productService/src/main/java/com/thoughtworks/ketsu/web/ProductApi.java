@@ -12,6 +12,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.created;
 import static javax.ws.rs.core.Response.status;
 
@@ -42,7 +43,12 @@ public class ProductApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Product getById(@PathParam("pid") String pid) {
-        return productRepository.getById(pid);
+        Product product = productRepository.getById(pid);
+        if (product == null) {
+            throw new WebApplicationException(NOT_FOUND);
+        } else {
+            return product;
+        }
     }
 }
 
