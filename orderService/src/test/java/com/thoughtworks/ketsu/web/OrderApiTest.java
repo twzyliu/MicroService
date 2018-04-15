@@ -9,8 +9,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockserver.client.server.MockServerClient;
 import org.mockserver.junit.MockServerRule;
+import org.mockserver.model.Header;
 import org.mockserver.model.Parameter;
 
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,13 +30,13 @@ public class OrderApiTest extends ApiSupport {
     private MockServerClient mockClient;
 
     @Rule
-    public MockServerRule server = new MockServerRule(this, 21000);
+    public MockServerRule server = new MockServerRule(this, 23333);
 
     @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        mockClient = new MockServerClient("127.0.0.1", 21000);
+        mockClient = new MockServerClient("127.0.0.1", 23333);
     }
 
     @Test
@@ -58,7 +61,7 @@ public class OrderApiTest extends ApiSupport {
             put("order_items", asList(order_item_map));
         }};
 
-        String expected = new Gson().toJson(price_map, Map.class);
+        String get_body = new Gson().toJson(price_map, Map.class);
         mockClient.when(
                 request()
                         .withPath("/prices")
@@ -67,12 +70,23 @@ public class OrderApiTest extends ApiSupport {
         ).respond(
                 response()
                         .withStatusCode(200)
-                        .withBody(expected)
+                        .withBody(get_body)
+        );
+
+        mockClient.when(
+                request()
+                        .withPath("/unloadings")
+                        .withMethod("POST")
+                        .withHeader(new Header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON))
+                        .withBody("")
+        ).respond(
+                response()
+                        .withStatusCode(201)
+                        .withBody("")
         );
 
         Response post = post("/orders", order_map);
 
-        Map order = post.readEntity(Map.class);
         assertThat(post.getStatus(), is(201));
     }
 }
