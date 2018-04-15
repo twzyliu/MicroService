@@ -37,4 +37,14 @@ public class ProductApi {
     public List<Product> getProducts() {
         return productRepository.getProducts();
     }
+
+    @Path("/{pid}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Product getById(@PathParam("pid") String pid) {
+        return productRepository.getById(pid);
+    }
 }
+
+
+

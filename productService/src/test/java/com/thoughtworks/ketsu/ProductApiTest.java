@@ -34,4 +34,10 @@ public class ProductApiTest extends ApiSupport{
         Response get = get("/products");
         assertThat(get.getStatus(), is(200));
     }
+
+    @Test
+    public void should_return_200_when_get_product_success() throws Exception {
+        Response get = get("/products/1");
+        assertThat(get.getStatus(), is(200));
+    }
 }

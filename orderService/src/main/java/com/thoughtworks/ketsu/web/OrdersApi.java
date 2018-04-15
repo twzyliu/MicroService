@@ -55,8 +55,8 @@ public class OrdersApi {
     }
 
     @Path("/{oid}")
-    public OrderApi ApiById(@PathParam("oid") String iid) {
-        return orderRepository.getById(iid).map(OrderApi::new).orElseThrow(() -> new WebApplicationException(NOT_FOUND));
+    public OrderApi ApiById(@PathParam("oid") String oid) {
+        return orderRepository.getById(oid).map(OrderApi::new).orElseThrow(() -> new WebApplicationException(NOT_FOUND));
     }
 
     private void createUnloading(List<Map> order_items) throws Exception {

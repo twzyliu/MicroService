@@ -11,4 +11,8 @@
     <select id="getProducts" resultMap="records.product">
         SELECT * FROM products
     </select>
+
+    <select id="getById" resultMap="records.product">
+        SELECT * FROM products WHERE id=#{pid}
+    </select>
 </mapper>

@@ -10,4 +10,6 @@ public interface ProductMapper {
     void save(@Param("info") Map<String, Object> info);
 
     List<Product> getProducts();
+
+    Product getById(@Param("pid") String pid);
 }

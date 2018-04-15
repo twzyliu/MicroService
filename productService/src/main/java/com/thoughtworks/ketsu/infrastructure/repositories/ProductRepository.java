@@ -21,4 +21,9 @@ public class ProductRepository implements Products{
     public List<Product> getProducts() {
         return productMapper.getProducts();
     }
+
+    @Override
+    public Product getById(String pid) {
+        return productMapper.getById(pid);
+    }
 }

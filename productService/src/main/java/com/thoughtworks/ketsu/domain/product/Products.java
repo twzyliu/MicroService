@@ -7,4 +7,7 @@ public interface Products {
     void save(Map<String, Object> info);
 
     List<Product> getProducts();
+
+    Product getById(String pid);
+
 }
