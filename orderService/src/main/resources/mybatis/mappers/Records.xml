@@ -18,4 +18,11 @@
             <result property="product_id" column="product_id"/>
         </collection>
     </resultMap>
+
+    <resultMap id="payment" type="com.thoughtworks.ketsu.domain.payment.Payment">
+        <result property="id" column="id"/>
+        <result property="order_id" column="order_id"/>
+        <result property="pay_type" column="pay_type"/>
+        <result property="create_time" column="create_time"/>
+    </resultMap>
 </mapper>
