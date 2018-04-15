@@ -10,7 +10,7 @@ public class Payment implements Record {
     private String id;
     private String order_id;
     private String pay_type;
-    private String creat_time;
+    private String create_time;
 
     public String getId() {
         return id;
@@ -25,7 +25,7 @@ public class Payment implements Record {
     }
 
     public String getCreat_time() {
-        return creat_time;
+        return create_time;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Payment implements Record {
             put("id", id);
             put("order_id", order_id);
             put("pay_type", pay_type);
-            put("creat_time", creat_time);
+            put("create_time", create_time);
         }};
     }
 

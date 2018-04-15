@@ -165,6 +165,12 @@ public class OrderApiTest extends ApiSupport {
         Response post = post("/orders/1/payments", new HashMap<>());
         assertThat(post.getStatus(), is(400));
     }
+
+    @Test
+    public void shoulr_return_200_when_get_payment_success() throws Exception {
+        Response get = get("/orders/2/payments");
+        assertThat(get.getStatus(), is(200));
+    }
 }
 
 

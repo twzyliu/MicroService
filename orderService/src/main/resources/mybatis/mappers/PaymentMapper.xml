@@ -7,4 +7,8 @@
         INSERT INTO payments (order_id, pay_type)
         VALUES (#{info.order_id}, #{info.pay_type});
     </insert>
+
+    <select id="getPayment" resultMap="records.payment">
+        SELECT * FROM payments WHERE order_id=#{oid}
+    </select>
 </mapper>

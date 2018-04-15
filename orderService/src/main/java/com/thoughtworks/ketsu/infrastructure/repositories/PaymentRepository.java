@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.infrastructure.repositories;
 
+import com.thoughtworks.ketsu.domain.payment.Payment;
 import com.thoughtworks.ketsu.domain.payment.Payments;
 import com.thoughtworks.ketsu.infrastructure.mybatis.mappers.PaymentMapper;
 
@@ -13,5 +14,10 @@ public class PaymentRepository implements Payments{
     @Override
     public void save(Map<String, Object> info) {
         paymentMapper.save(info);
+    }
+
+    @Override
+    public Payment getPayment(String oid) {
+        return paymentMapper.getPayment(oid);
     }
 }

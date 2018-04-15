@@ -4,4 +4,6 @@ import java.util.Map;
 
 public interface Payments {
     void save(Map<String, Object> info);
+
+    Payment getPayment(String oid);
 }

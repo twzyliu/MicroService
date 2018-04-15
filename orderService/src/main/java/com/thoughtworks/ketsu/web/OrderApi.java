@@ -1,6 +1,7 @@
 package com.thoughtworks.ketsu.web;
 
 import com.thoughtworks.ketsu.domain.order.Order;
+import com.thoughtworks.ketsu.domain.payment.Payment;
 import com.thoughtworks.ketsu.infrastructure.repositories.LogisticRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.PaymentRepository;
 
@@ -40,7 +41,9 @@ public class OrderApi {
         if (!info.containsKey("pay_type")) {
             return status(400).build();
         }
-        paymentRepository.save(info);
+        if (paymentRepository.getPayment(order.getId()) == null) {
+            paymentRepository.save(info);
+        }
         if (info.containsKey("id")) {
             info.put("time", new Date(currentTimeMillis() + 24 * 60 * 60 * 1000));
             logisticRepository.save(info);
@@ -49,4 +52,21 @@ public class OrderApi {
             return status(400).build();
         }
     }
+
+    @Path("/payments")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Payment getPayment(@Context PaymentRepository paymentRepository) throws URISyntaxException {
+        return paymentRepository.getPayment(order.getId());
+    }
 }
+
+
+
+
+
+
+
+
+
+
