@@ -145,6 +145,12 @@ public class OrderApiTest extends ApiSupport {
         Response get = get("/orders/1");
         assertThat(get.getStatus(), is(200));
     }
+
+    @Test
+    public void shoule_return_404_when_get_order_fail() throws Exception {
+        Response get = get("/orders/aaa");
+        assertThat(get.getStatus(), is(404));
+    }
 }
 
 
