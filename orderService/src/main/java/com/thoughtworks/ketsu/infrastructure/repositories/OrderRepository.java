@@ -7,8 +7,11 @@ import com.thoughtworks.ketsu.infrastructure.mybatis.mappers.OrderMapper;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
-public class OrderRepository implements Orders{
+import static java.util.Optional.*;
+
+public class OrderRepository implements Orders {
     @Inject
     OrderMapper orderMapper;
 
@@ -20,5 +23,11 @@ public class OrderRepository implements Orders{
     @Override
     public List<Order> getOrders() {
         return orderMapper.getOrders();
+    }
+
+    @Override
+    public Optional<Order> getById(String iid) {
+        Order order = orderMapper.getById(iid);
+        return order == null ? empty() : of(order);
     }
 }

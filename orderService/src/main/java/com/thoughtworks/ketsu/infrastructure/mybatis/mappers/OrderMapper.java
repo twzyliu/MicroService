@@ -10,4 +10,6 @@ public interface OrderMapper {
     void save(@Param("info") Map<String, Object> info);
 
     List<Order> getOrders();
+
+    Order getById(@Param("iid") String iid);
 }

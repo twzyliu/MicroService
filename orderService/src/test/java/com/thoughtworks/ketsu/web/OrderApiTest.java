@@ -142,7 +142,8 @@ public class OrderApiTest extends ApiSupport {
 
     @Test
     public void should_return_200_when_get_order_success() throws Exception {
-        
+        Response get = get("/orders/1");
+        assertThat(get.getStatus(), is(200));
     }
 }
 

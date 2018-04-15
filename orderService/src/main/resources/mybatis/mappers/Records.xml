@@ -5,6 +5,10 @@
 <mapper namespace="records">
     <resultMap id="order" type="com.thoughtworks.ketsu.domain.order.Order">
         <result property="id" column="id"/>
+        <result property="user_id" column="user_id"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
         <result property="amount" column="amount"/>
         <result property="create_time" column="create_time"/>
         <collection property="order_items" ofType="com.thoughtworks.ketsu.domain.order.OrderItem">
