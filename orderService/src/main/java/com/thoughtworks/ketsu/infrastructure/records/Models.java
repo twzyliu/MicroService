@@ -2,9 +2,12 @@ package com.thoughtworks.ketsu.infrastructure.records;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
+import com.thoughtworks.ketsu.domain.confirmation.Confirmation;
+import com.thoughtworks.ketsu.domain.confirmation.Confirmations;
 import com.thoughtworks.ketsu.domain.logistic.Logistics;
 import com.thoughtworks.ketsu.domain.order.Orders;
 import com.thoughtworks.ketsu.domain.payment.Payments;
+import com.thoughtworks.ketsu.infrastructure.repositories.ConfirmationRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.LogisticRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.OrderRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.PaymentRepository;
@@ -58,6 +61,7 @@ public class Models extends AbstractModule {
         bind(Orders.class).to(OrderRepository.class);
         bind(Payments.class).to(PaymentRepository.class);
         bind(Logistics.class).to(LogisticRepository.class);
+        bind(Confirmations.class).to(ConfirmationRepository.class);
     }
 
     private void bindPersistence() {

@@ -6,6 +6,9 @@ import com.thoughtworks.ketsu.infrastructure.mybatis.mappers.LogisticMapper;
 
 import javax.inject.Inject;
 import java.util.Map;
+import java.util.Optional;
+
+import static java.util.Optional.*;
 
 public class LogisticRepository implements Logistics{
     @Inject
@@ -17,7 +20,8 @@ public class LogisticRepository implements Logistics{
     }
 
     @Override
-    public Logistic getLogistic(String oid) {
-        return logisticMapper.getLogistic(oid);
+    public Optional<Logistic> getLogistic(String oid) {
+        Logistic logistic = logisticMapper.getLogistic(oid);
+        return logistic == null ? empty() : of(logistic);
     }
 }

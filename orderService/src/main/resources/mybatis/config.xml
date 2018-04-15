@@ -38,5 +38,6 @@
         <mapper resource="mybatis/mappers/OrderMapper.xml"/>
         <mapper resource="mybatis/mappers/PaymentMapper.xml"/>
         <mapper resource="mybatis/mappers/LogisticMapper.xml"/>
+        <mapper resource="mybatis/mappers/ConfirmationMapper.xml"/>
     </mappers>
 </configuration>

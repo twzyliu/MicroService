@@ -1,6 +1,5 @@
 package com.thoughtworks.ketsu.web;
 
-import com.thoughtworks.ketsu.domain.logistic.Logistic;
 import com.thoughtworks.ketsu.domain.order.Order;
 import com.thoughtworks.ketsu.domain.payment.Payment;
 import com.thoughtworks.ketsu.infrastructure.repositories.LogisticRepository;
@@ -15,7 +14,8 @@ import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.Map;
 
-import static java.lang.System.*;
+import static java.lang.System.currentTimeMillis;
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.created;
 import static javax.ws.rs.core.Response.status;
 
@@ -62,10 +62,8 @@ public class OrderApi {
     }
 
     @Path("/logistic")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Logistic getLogistic(@Context LogisticRepository logisticRepository) throws URISyntaxException {
-        return logisticRepository.getLogistic(order.getId());
+    public LogisticApi logisticApi(@Context LogisticRepository logisticRepository) {
+        return logisticRepository.getLogistic(order.getId()).map(LogisticApi::new).orElseThrow(() -> new WebApplicationException(NOT_FOUND));
     }
 }
 
