@@ -171,20 +171,6 @@ public class OrderApiTest extends ApiSupport {
         Response get = get("/orders/2/payment");
         assertThat(get.getStatus(), is(200));
     }
-
-    @Test
-    public void should_return_200_when_get_logistic_success() throws Exception {
-        Response get = get("/orders/2/logistic");
-        assertThat(get.getStatus(), is(200));
-    }
-
-    @Test
-    public void should_return_201_when_post_confirmation_success() throws Exception {
-        Response post = post("/orders/2/logistic/confirmation", new HashMap(){{
-            put("recipient", "Hades");
-        }});
-        assertThat(post.getStatus(), is(201));
-    }
 }
 
 

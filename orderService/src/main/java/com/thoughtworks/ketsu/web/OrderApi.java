@@ -44,6 +44,8 @@ public class OrderApi {
         }
         if (paymentRepository.getPayment(order.getId()) == null) {
             paymentRepository.save(info);
+        }else {
+            return created(new URI("/orders/" + order.getId() + "/payment")).build();
         }
         if (info.containsKey("id")) {
             info.put("time", new Date(currentTimeMillis() + 24 * 60 * 60 * 1000));

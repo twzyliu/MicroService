@@ -33,6 +33,9 @@ public class LogisticApi {
     public Response createConfirmation(Map<String, Object> info,
                                        @Context ConfirmationRepository confirmationRepository) throws URISyntaxException {
         info.put("order_id", logistic.getOrder_id());
+        if (!info.containsKey("recipient")) {
+            return status(400).build();
+        }
         confirmationRepository.save(info);
         return info.containsKey("id") ?
                 created(new URI("/orders/" + logistic.getOrder_id() + "/logistic/confirmation")).build() :
