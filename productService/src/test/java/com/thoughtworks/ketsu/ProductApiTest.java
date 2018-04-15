@@ -22,4 +22,10 @@ public class ProductApiTest extends ApiSupport{
         }});
         assertThat(post.getStatus(), is(201));
     }
+
+    @Test
+    public void should_return_400_when_post_product_fail() throws Exception {
+        Response post = post("/products", new HashMap<>());
+        assertThat(post.getStatus(), is(400));
+    }
 }

@@ -23,6 +23,9 @@ public class ProductApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Map<String, Object> info) throws URISyntaxException {
+        if (!info.containsKey("user_id") || !info.containsKey("name") || !info.containsKey("description")) {
+            return status(400).build();
+        }
         productRepository.save(info);
         return info.containsKey("id") ?
                 created(new URI("/products/" + info.get("id") + "")).build() :
