@@ -37,6 +37,9 @@ public class OrderApi {
                                   @Context PaymentRepository paymentRepository,
                                   @Context LogisticRepository logisticRepository) throws URISyntaxException {
         info.put("order_id", order.getId());
+        if (!info.containsKey("pay_type")) {
+            return status(400).build();
+        }
         paymentRepository.save(info);
         if (info.containsKey("id")) {
             info.put("time", new Date(currentTimeMillis() + 24 * 60 * 60 * 1000));

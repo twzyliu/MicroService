@@ -155,13 +155,16 @@ public class OrderApiTest extends ApiSupport {
     @Test
     public void should_return_201_when_post_payment_success() throws Exception {
         Response post = post("/orders/1/payments", new HashMap(){{
-            put("order_id","1");
             put("pay_type","1");
         }});
         assertThat(post.getStatus(), is(201));
     }
 
-    
+    @Test
+    public void should_return_400_when_post_payment_fail() throws Exception {
+        Response post = post("/orders/1/payments", new HashMap<>());
+        assertThat(post.getStatus(), is(400));
+    }
 }
 
 
