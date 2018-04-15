@@ -25,4 +25,11 @@
         <result property="pay_type" column="pay_type"/>
         <result property="create_time" column="create_time"/>
     </resultMap>
+
+    <resultMap id="logistic" type="com.thoughtworks.ketsu.domain.logistic.Logistic">
+        <result property="id" column="id"/>
+        <result property="order_id" column="order_id"/>
+        <result property="time" column="time"/>
+        <result property="create_time" column="create_time"/>
+    </resultMap>
 </mapper>
