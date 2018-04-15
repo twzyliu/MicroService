@@ -7,5 +7,11 @@
         <result property="id" column="id"/>
         <result property="amount" column="amount"/>
         <result property="create_time" column="create_time"/>
+        <collection property="orderItems" ofType="com.thoughtworks.ketsu.domain.order.OrderItem">
+            <id property="id" column="id"/>
+            <result property="order_id" column="order_id"/>
+            <result property="quantity" column="quantity"/>
+            <result property="product_id" column="product_id"/>
+        </collection>
     </resultMap>
 </mapper>
