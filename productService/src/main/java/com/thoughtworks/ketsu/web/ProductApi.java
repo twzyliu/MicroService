@@ -50,6 +50,16 @@ public class ProductApi {
             return product;
         }
     }
+
+    @Path("/{pid}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(@PathParam("pid") String pid,
+                           Map<String, Object> info) throws URISyntaxException {
+        info.put("pid", pid);
+        productRepository.update(info);
+        return created(new URI("/products/" + pid)).build();
+    }
 }
 
 

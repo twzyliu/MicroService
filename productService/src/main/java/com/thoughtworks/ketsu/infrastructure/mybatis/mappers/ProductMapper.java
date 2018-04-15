@@ -12,4 +12,6 @@ public interface ProductMapper {
     List<Product> getProducts();
 
     Product getById(@Param("pid") String pid);
+
+    void update(@Param("info") Map<String, Object> info);
 }

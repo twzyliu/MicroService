@@ -15,4 +15,12 @@
     <select id="getById" resultMap="records.product">
         SELECT * FROM products WHERE id=#{pid}
     </select>
+
+    <update id="update">
+        UPDATE products
+        SET
+        name = #{info.name},
+        description = #{info.description}
+        WHERE id = #{info.pid}
+    </update>
 </mapper>

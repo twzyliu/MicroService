@@ -10,4 +10,5 @@ public interface Products {
 
     Product getById(String pid);
 
+    void update(Map<String, Object> info);
 }

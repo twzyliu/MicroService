@@ -26,4 +26,9 @@ public class ProductRepository implements Products{
     public Product getById(String pid) {
         return productMapper.getById(pid);
     }
+
+    @Override
+    public void update(Map<String, Object> info) {
+        productMapper.update(info);
+    }
 }

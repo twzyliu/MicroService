@@ -46,4 +46,13 @@ public class ProductApiTest extends ApiSupport{
         Response get = get("/products/aaa");
         assertThat(get.getStatus(), is(404));
     }
+
+    @Test
+    public void should_return_201_when_put_product_success() throws Exception {
+        Response put = put("/products/1", new HashMap() {{
+            put("name", "pen");
+            put("description", "green");
+        }});
+        assertThat(put.getStatus(), is(201));
+    }
 }
