@@ -32,4 +32,10 @@ public class LogisticApiTest extends ApiSupport {
         Response post = post("/orders/2/logistic/confirmation", new HashMap<>());
         assertThat(post.getStatus(), is(400));
     }
+
+    @Test
+    public void should_return_200_when_get_confirmation_success() throws Exception {
+        Response get = get("/orders/3/logistic/confirmation");
+        assertThat(get.getStatus(), is(200));
+    }
 }

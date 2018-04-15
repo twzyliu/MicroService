@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.web;
 
+import com.thoughtworks.ketsu.domain.confirmation.Confirmation;
 import com.thoughtworks.ketsu.domain.logistic.Logistic;
 import com.thoughtworks.ketsu.infrastructure.repositories.ConfirmationRepository;
 
@@ -41,4 +42,12 @@ public class LogisticApi {
                 created(new URI("/orders/" + logistic.getOrder_id() + "/logistic/confirmation")).build() :
                 status(400).build();
     }
+
+    @Path("/confirmation")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Confirmation getConfirmation(@Context ConfirmationRepository confirmationRepository) throws URISyntaxException {
+        return confirmationRepository.getConfirmation(logistic.getOrder_id());
+    }
 }
+

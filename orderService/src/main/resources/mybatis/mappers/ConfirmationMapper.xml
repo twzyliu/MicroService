@@ -7,4 +7,8 @@
         INSERT INTO confirmations (order_id, recipient)
         VALUES (#{info.order_id}, #{info.recipient});
     </insert>
+
+    <select id="getConfirmation" resultMap="records.confirmation">
+        SELECT * FROM confirmations WHERE order_id=#{oid}
+    </select>
 </mapper>

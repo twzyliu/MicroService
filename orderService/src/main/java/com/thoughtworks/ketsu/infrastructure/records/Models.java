@@ -2,7 +2,6 @@ package com.thoughtworks.ketsu.infrastructure.records;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
-import com.thoughtworks.ketsu.domain.confirmation.Confirmation;
 import com.thoughtworks.ketsu.domain.confirmation.Confirmations;
 import com.thoughtworks.ketsu.domain.logistic.Logistics;
 import com.thoughtworks.ketsu.domain.order.Orders;
