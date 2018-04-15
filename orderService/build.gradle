@@ -63,6 +63,7 @@ ext {
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 dependencies {
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.5'
     compile 'org.mock-server:mockserver-netty:3.10.4'
     compile 'org.apache.httpcomponents:httpclient:4.5.5'
 
