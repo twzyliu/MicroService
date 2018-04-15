@@ -89,4 +89,48 @@ public class OrderApiTest extends ApiSupport {
 
         assertThat(post.getStatus(), is(201));
     }
+
+    @Test
+    public void should_return_400_when_post_order_fail() throws Exception {
+        String product_id = "001";
+        String quantity = "10";
+        Map order_item_map = new HashMap() {{
+            put("product_id", product_id);
+            put("quantity", quantity);
+        }};
+        Map order_map = new HashMap() {{
+            put("user_id", "007");
+            put("name", "Hades");
+            put("phone", "12345678901");
+            put("address", "home");
+            put("order_items", asList(order_item_map));
+        }};
+
+        mockClient.when(
+                request()
+                        .withPath("/prices")
+                        .withMethod("GET")
+                        .withQueryStringParameter(new Parameter("product_id", product_id))
+        ).respond(
+                response()
+                        .withStatusCode(200)
+                        .withBody("")
+        );
+
+        mockClient.when(
+                request()
+                        .withPath("/unloadings")
+                        .withMethod("POST")
+                        .withHeader(new Header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON))
+                        .withBody("")
+        ).respond(
+                response()
+                        .withStatusCode(201)
+                        .withBody("")
+        );
+
+        Response post = post("/orders", order_map);
+
+        assertThat(post.getStatus(), is(400));
+    }
 }
