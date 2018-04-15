@@ -8,5 +8,4 @@ out/
 *.iws
 .vagrant/
 .local/
-.vagrant/
 *.swp
