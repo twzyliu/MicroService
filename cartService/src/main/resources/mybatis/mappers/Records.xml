@@ -3,4 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="records">
+    <resultMap id="cart" type="com.thoughtworks.ketsu.domain.cart.Cart">
+        <result property="id" column="id"/>
+        <result property="user_id" column="user_id"/>
+        <result property="amount" column="amount"/>
+        <result property="create_time" column="create_time"/>
+    </resultMap>
 </mapper>

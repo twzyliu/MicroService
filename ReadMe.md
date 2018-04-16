@@ -6,3 +6,4 @@
 * /orderService 订单服务
 * /productService 产品服务
 * /priceService 定价服务
+* /cartService 购物车服务
