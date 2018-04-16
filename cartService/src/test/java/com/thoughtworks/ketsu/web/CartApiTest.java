@@ -95,6 +95,38 @@ public class CartApiTest extends ApiSupport {
         Response get = get("/carts/1");
         assertThat(get.getStatus(), is(200));
     }
+
+    @Test
+    public void should_return_201_when_put_cart_success() throws Exception {
+        String product_id = "1";
+        Map price_map = new HashMap() {{
+            put("price", "999");
+            put("product_id", product_id);
+        }};
+
+        String get_body = new Gson().toJson(price_map, Map.class);
+        mockClient.when(
+                request()
+                        .withPath("/prices")
+                        .withQueryStringParameter("product_id", product_id)
+                        .withMethod("GET")
+        ).respond(
+                response()
+                        .withStatusCode(200)
+                        .withBody(get_body)
+        );
+
+        Map cart_item = new HashMap() {{
+            put("product_id", product_id);
+            put("quantity", "1000");
+        }};
+
+        Response put = put("/carts/1",new HashMap() {{
+            put("user_id", "007");
+            put("cart_items", asList(cart_item));
+        }});
+        assertThat(put.getStatus(), is(201));
+    }
 }
 
 

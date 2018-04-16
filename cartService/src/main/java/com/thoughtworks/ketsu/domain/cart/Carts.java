@@ -6,4 +6,6 @@ public interface Carts {
     void save(Map<String, Object> info);
 
     Cart getCart(String cid);
+
+    void deleteItems(String cid);
 }

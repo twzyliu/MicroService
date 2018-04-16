@@ -20,4 +20,9 @@ public class CartRepository implements Carts{
     public Cart getCart(String cid) {
         return cartMapper.getCart(cid);
     }
+
+    @Override
+    public void deleteItems(String cid) {
+        cartMapper.deleteItems(cid);
+    }
 }

@@ -50,6 +50,16 @@ public class CartApi {
         return cartRepository.getCart(cid);
     }
 
+    @Path("{cid}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(Map<String, Object> info,
+                           @PathParam("cid") String cid) throws URISyntaxException {
+        info.put("cart_id", cid);
+        cartRepository.deleteItems(cid);
+        return creat(info);
+    }
+
     private String getPrice(Map cartItem) {
         String host = getenv().getOrDefault("PRICE_SERVICE_HOST", "127.0.0.1");
         String port = getenv().getOrDefault("PRICE_SERVICE_PORT", "23333");

@@ -9,4 +9,6 @@ public interface CartMapper {
     void save(@Param("info") Map<String, Object> info);
 
     Cart getCart(@Param("cid") String cid);
+
+    void deleteItems(@Param("cid") String cid);
 }
