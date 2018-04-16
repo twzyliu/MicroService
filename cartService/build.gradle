@@ -63,6 +63,7 @@ ext {
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 dependencies {
+    compile 'org.mock-server:mockserver-netty:3.10.4'
     compile 'org.apache.httpcomponents:httpclient:4.5.5'
 
     compile "org.slf4j:slf4j-api:$slf4j"

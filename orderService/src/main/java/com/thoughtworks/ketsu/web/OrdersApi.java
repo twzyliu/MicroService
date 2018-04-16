@@ -78,9 +78,9 @@ public class OrdersApi {
     private String getPrice(Map order_item) {
         String host = getenv().getOrDefault("PRICE_SERVICE_HOST", "127.0.0.1");
         String port = getenv().getOrDefault("PRICE_SERVICE_PORT", "23333");
-        String priceMap = doGet("http://" + host + ":" + port + "/prices?product_id=" + order_item.get("product_id"));
-        Map price_map = new Gson().fromJson(priceMap, Map.class);
-        return priceMap.contains("price") ?
+        String price_json = doGet("http://" + host + ":" + port + "/prices?product_id=" + order_item.get("product_id"));
+        Map price_map = new Gson().fromJson(price_json, Map.class);
+        return price_json.contains("price") ?
                 price_map.get("price") + "" :
                 "-1";
     }
