@@ -22,4 +22,18 @@ public class PriceApiTest extends ApiSupport{
         }});
         assertThat(post.getStatus(), is(201));
     }
+
+    @Test
+    public void should_return_400_when_post_price_success() throws Exception {
+        Response post = post("/prices", new HashMap(){{
+            put("price","999");
+        }});
+        assertThat(post.getStatus(), is(400));
+    }
+
+//    @Test
+    public void should_return_200_when_get_price() throws Exception {
+        Response get = get("/prices?product_id=100");
+        assertThat(get.getStatus(), is(200));
+    }
 }

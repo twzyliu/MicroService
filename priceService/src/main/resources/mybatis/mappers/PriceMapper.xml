@@ -7,4 +7,8 @@
         INSERT INTO prices (product_id, price)
         VALUES (#{info.product_id}, #{info.price});
     </insert>
+
+    <select id="getPrice" resultMap="records.price">
+        SELECT * FROM prices WHERE product_id=#{pid}
+    </select>
 </mapper>

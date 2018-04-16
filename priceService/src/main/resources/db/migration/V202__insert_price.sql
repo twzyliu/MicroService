@@ -1,0 +1,1 @@
+insert into prices (product_id, price) values ("100", "777");
