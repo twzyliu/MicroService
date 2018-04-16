@@ -127,6 +127,32 @@ public class CartApiTest extends ApiSupport {
         }});
         assertThat(put.getStatus(), is(201));
     }
+
+    @Test
+    public void should_return_400_when_put_cart_fail() throws Exception {
+        String product_id = "1";
+        mockClient.when(
+                request()
+                        .withPath("/prices")
+                        .withQueryStringParameter("product_id", product_id)
+                        .withMethod("GET")
+        ).respond(
+                response()
+                        .withStatusCode(200)
+                        .withBody("")
+        );
+
+        Map cart_item = new HashMap() {{
+            put("product_id", product_id);
+            put("quantity", "1000");
+        }};
+
+        Response put = put("/carts/1",new HashMap() {{
+            put("user_id", "007");
+            put("cart_items", asList(cart_item));
+        }});
+        assertThat(put.getStatus(), is(400));
+    }
 }
 
 
