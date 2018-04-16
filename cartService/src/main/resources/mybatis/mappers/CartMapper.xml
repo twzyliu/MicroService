@@ -12,4 +12,9 @@
             @LAST_CART , #{cart_item.product_id} , #{cart_item.quantity}
         </foreach>
     </insert>
+
+    <select id="getCart" resultMap="records.cart">
+        SELECT * FROM carts c, cart_items i
+        WHERE c.id=#{cid} and c.id=i.cart_id
+    </select>
 </mapper>

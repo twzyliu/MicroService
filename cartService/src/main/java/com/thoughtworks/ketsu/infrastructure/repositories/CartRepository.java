@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.infrastructure.repositories;
 
+import com.thoughtworks.ketsu.domain.cart.Cart;
 import com.thoughtworks.ketsu.domain.cart.Carts;
 import com.thoughtworks.ketsu.infrastructure.mybatis.mappers.CartMapper;
 
@@ -13,5 +14,10 @@ public class CartRepository implements Carts{
     @Override
     public void save(Map<String, Object> info) {
         cartMapper.save(info);
+    }
+
+    @Override
+    public Cart getCart(String cid) {
+        return cartMapper.getCart(cid);
     }
 }

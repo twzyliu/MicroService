@@ -14,7 +14,7 @@ public class Cart implements Record {
     private String user_id;
     private String amount;
     private List<CartItem> cart_items;
-    private String creat_time;
+    private String create_time;
 
     public String getId() {
         return id;
@@ -28,8 +28,8 @@ public class Cart implements Record {
         return amount;
     }
 
-    public String getCreat_time() {
-        return creat_time;
+    public String getCreate_time() {
+        return create_time;
     }
 
     public List<CartItem> getCart_items() {
@@ -38,12 +38,12 @@ public class Cart implements Record {
 
     @Override
     public Map<String, Object> toRefJson(Routes routes) {
-        List<Map> cart_items_json = cart_items.stream().map(order_item -> order_item.toRefJson(routes)).collect(toList());
+        List<Map> cart_items_json = cart_items.stream().map(cart_item -> cart_item.toRefJson(routes)).collect(toList());
         return new HashMap() {{
             put("id", id);
             put("user_id", user_id);
             put("amount", amount);
-            put("creat_time", creat_time);
+            put("create_time", create_time);
             put("cart_items", cart_items_json);
         }};
     }

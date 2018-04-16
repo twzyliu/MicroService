@@ -46,7 +46,7 @@ public class CartApiTest extends ApiSupport {
         mockClient.when(
                 request()
                         .withPath("/prices")
-                        .withQueryStringParameter("product_id",product_id)
+                        .withQueryStringParameter("product_id", product_id)
                         .withMethod("GET")
         ).respond(
                 response()
@@ -71,7 +71,7 @@ public class CartApiTest extends ApiSupport {
         mockClient.when(
                 request()
                         .withPath("/prices")
-                        .withQueryStringParameter("product_id",product_id)
+                        .withQueryStringParameter("product_id", product_id)
                         .withMethod("GET")
         ).respond(
                 response()
@@ -89,4 +89,20 @@ public class CartApiTest extends ApiSupport {
         }});
         assertThat(post.getStatus(), is(400));
     }
+
+    @Test
+    public void should_return_200_when_get_cart() throws Exception {
+        Response get = get("/carts/1");
+        assertThat(get.getStatus(), is(200));
+    }
 }
+
+
+
+
+
+
+
+
+
+
