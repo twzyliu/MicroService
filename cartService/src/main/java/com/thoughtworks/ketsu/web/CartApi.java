@@ -49,7 +49,7 @@ public class CartApi {
         String port = getenv().getOrDefault("PRICE_SERVICE_PORT", "23333");
         String price_json = doGet("http://" + host + ":" + port + "/prices?product_id=" + cartItem.get("product_id"));
         Map price_map = new Gson().fromJson(price_json, Map.class);
-        return price_map.containsKey("price") ?
+        return (!"".equals(price_json) && price_map.containsKey("price")) ?
                 price_map.get("price") + "" :
                 "-1";
     }
