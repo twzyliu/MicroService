@@ -57,4 +57,10 @@ public class InventoryApiTest extends ApiSupport {
         }});
         assertThat(put.getStatus(), is(201));
     }
+
+    @Test
+    public void should_return_400_when_put_store_fail() throws Exception {
+        Response put = put("/stores/1", new HashMap<>());
+        assertThat(put.getStatus(), is(400));
+    }
 }

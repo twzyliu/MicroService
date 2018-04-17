@@ -33,6 +33,9 @@ public class StoreApi {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response update(Map<String, Object> info,
                            @Context StoreRepository storeRepository) throws URISyntaxException {
+        if (!info.containsKey("user_id") || !info.containsKey("name")) {
+            return status(400).build();
+        }
         info.put("store_id", store.getId());
         storeRepository.update(info);
         return created(new URI("/stores/" + store.getId())).build();
