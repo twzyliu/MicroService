@@ -17,7 +17,7 @@
         <result property="pay" column="pay"/>
         <result property="create_time" column="create_time"/>
     </resultMap>
-    <resultMap id="inventroty" type="com.thoughtworks.ketsu.domain.inventory.Inventory">
+    <resultMap id="inventory" type="com.thoughtworks.ketsu.domain.inventory.Inventory">
             <result property="id" column="id"/>
             <result property="store_id" column="store_id"/>
             <result property="create_time" column="create_time"/>

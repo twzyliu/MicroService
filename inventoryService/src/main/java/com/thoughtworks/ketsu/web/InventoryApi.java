@@ -1,15 +1,19 @@
 package com.thoughtworks.ketsu.web;
 
+import com.thoughtworks.ketsu.domain.inventory.Inventory;
 import com.thoughtworks.ketsu.domain.store.Store;
 import com.thoughtworks.ketsu.infrastructure.repositories.InventoryRepository;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Map;
 
 import static javax.ws.rs.core.Response.created;
@@ -34,5 +38,11 @@ public class InventoryApi {
         return info.containsKey("id") ?
                 created(new URI("/stores/" + store.getId() + "/inventories/" + info.get("id"))).build() :
                 status(400).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Inventory> getList(@Context InventoryRepository inventoryRepository) {
+        return inventoryRepository.getList(store.getId());
     }
 }

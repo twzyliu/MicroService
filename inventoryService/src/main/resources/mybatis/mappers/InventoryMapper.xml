@@ -12,4 +12,9 @@
                 @LAST , #{inventory_item.product_id}, #{inventory_item.quantity}
             </foreach>
     </insert>
+
+    <select id="getList" resultMap="records.inventory">
+            SELECT * FROM inventories
+            WHERE store_id=#{sid}
+     </select>
 </mapper>

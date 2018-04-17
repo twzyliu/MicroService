@@ -15,7 +15,6 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(ApiTestRunner.class)
 public class InventoryApiTest extends ApiSupport {
-
     @Test
     public void should_return_201_when_post_inventory_success() throws Exception {
         Map item_map = new HashMap() {{
@@ -32,5 +31,11 @@ public class InventoryApiTest extends ApiSupport {
     public void should_return_400_when_post_inventory_fail() throws Exception {
         Response post = post("/stores/1/inventories", new HashMap<>());
         assertThat(post.getStatus(), is(400));
+    }
+
+    @Test
+    public void should_return_200_when_get_inventory_success() throws Exception {
+        Response get = get("/stores/1/inventories");
+        assertThat(get.getStatus(), is(200));
     }
 }
