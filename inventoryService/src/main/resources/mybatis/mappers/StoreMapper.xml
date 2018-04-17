@@ -7,4 +7,8 @@
         INSERT INTO stores (user_id, name, description)
         VALUES (#{info.user_id}, #{info.name}, #{info.description});
     </insert>
+
+    <select id="getList" resultMap="records.store">
+        SELECT * FROM stores
+    </select>
 </mapper>
