@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.infrastructure.repositories;
 
+import com.thoughtworks.ketsu.domain.unloadIng.Unloading;
 import com.thoughtworks.ketsu.domain.unloadIng.Unloadings;
 import com.thoughtworks.ketsu.infrastructure.mybatis.mappers.UnloadingMapper;
 
@@ -13,5 +14,10 @@ public class UnloadingRepository implements Unloadings {
     @Override
     public void save(Map<String, Object> info) {
         unloadingMapper.save(info);
+    }
+
+    @Override
+    public Unloading getList() {
+        return unloadingMapper.getList();
     }
 }

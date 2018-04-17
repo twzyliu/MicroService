@@ -28,4 +28,10 @@ public class UnloadingApiTest extends ApiSupport{
         Response post = post("/unloadings", new HashMap<>());
         assertThat(post.getStatus(), is(400));
     }
+
+    @Test
+    public void should_return_200_when_get_inventory_unloadings_success() throws Exception {
+        Response get = get("/unloadings");
+        assertThat(get.getStatus(), is(200));
+    }
 }
