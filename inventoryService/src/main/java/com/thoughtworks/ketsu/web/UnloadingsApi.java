@@ -40,6 +40,10 @@ public class UnloadingsApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Unloading getById(@PathParam("uid") String uid) {
-        return unloadingRepository.getByid(uid);
+        Unloading unloading = unloadingRepository.getByid(uid);
+        if (unloading == null) {
+            throw new WebApplicationException(Status.NOT_FOUND);
+        }
+        return unloading;
     }
 }

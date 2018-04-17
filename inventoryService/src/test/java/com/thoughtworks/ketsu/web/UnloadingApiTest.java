@@ -40,4 +40,10 @@ public class UnloadingApiTest extends ApiSupport {
         Response get = get("/unloadings/1");
         assertThat(get.getStatus(), is(200));
     }
+
+    @Test
+    public void should_return_404_when_get_inventory_unloading_fail() throws Exception {
+        Response get = get("/unloadings/a");
+        assertThat(get.getStatus(), is(404));
+    }
 }
