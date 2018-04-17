@@ -12,4 +12,6 @@ public interface StoreMapper {
     List<Store> getList();
 
     Store getStore(@Param("sid") String sid);
+
+    void update(@Param("info") Map<String, Object> info);
 }

@@ -10,4 +10,6 @@ public interface Stores {
     List<Store> getList();
 
     Optional<Store> getById(String sid);
+
+    void update(Map<String, Object> info);
 }

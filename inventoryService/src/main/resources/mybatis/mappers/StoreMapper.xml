@@ -15,4 +15,13 @@
     <select id="getStore" resultMap="records.store">
         SELECT * FROM stores WHERE id=#{sid}
     </select>
+
+    <update id="update">
+        UPDATE stores
+        SET
+        user_id = #{info.user_id},
+        name = #{info.name},
+        description = #{info.description}
+        WHERE id = #{info.store_id}
+    </update>
 </mapper>

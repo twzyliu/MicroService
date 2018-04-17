@@ -30,4 +30,9 @@ public class StoreRepository implements Stores {
         Store store = storeMapper.getStore(sid);
         return store == null ? empty() : of(store);
     }
+
+    @Override
+    public void update(Map<String, Object> info) {
+        storeMapper.update(info);
+    }
 }
