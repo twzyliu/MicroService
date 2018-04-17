@@ -2,8 +2,10 @@ package com.thoughtworks.ketsu.infrastructure.records;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
+import com.thoughtworks.ketsu.domain.inventory.Inventories;
 import com.thoughtworks.ketsu.domain.store.Stores;
 import com.thoughtworks.ketsu.domain.unloadIng.Unloadings;
+import com.thoughtworks.ketsu.infrastructure.repositories.InventoryRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.StoreRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.UnloadingRepository;
 import org.apache.ibatis.plugin.Interceptor;
@@ -55,6 +57,7 @@ public class Models extends AbstractModule {
         bindPersistence();
         bind(Stores.class).to(StoreRepository.class);
         bind(Unloadings.class).to(UnloadingRepository.class);
+        bind(Inventories.class).to(InventoryRepository.class);
     }
 
     private void bindPersistence() {

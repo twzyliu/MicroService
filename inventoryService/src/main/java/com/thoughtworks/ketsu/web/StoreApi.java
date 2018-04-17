@@ -3,10 +3,7 @@ package com.thoughtworks.ketsu.web;
 import com.thoughtworks.ketsu.domain.store.Store;
 import com.thoughtworks.ketsu.infrastructure.repositories.StoreRepository;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -39,5 +36,10 @@ public class StoreApi {
         info.put("store_id", store.getId());
         storeRepository.update(info);
         return created(new URI("/stores/" + store.getId())).build();
+    }
+
+    @Path("/inventories")
+    public InventoryApi inventoryApi() {
+        return new InventoryApi(store);
     }
 }

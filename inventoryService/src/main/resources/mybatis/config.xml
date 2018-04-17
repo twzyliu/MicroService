@@ -37,5 +37,6 @@
         <mapper resource="mybatis/mappers/Columns.xml"/>
         <mapper resource="mybatis/mappers/StoreMapper.xml"/>
         <mapper resource="mybatis/mappers/UnloadingMapper.xml"/>
+        <mapper resource="mybatis/mappers/InventoryMapper.xml"/>
     </mappers>
 </configuration>
