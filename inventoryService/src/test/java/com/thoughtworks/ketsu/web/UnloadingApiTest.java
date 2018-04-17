@@ -22,4 +22,10 @@ public class UnloadingApiTest extends ApiSupport{
         }});
         assertThat(post.getStatus(), is(201));
     }
+
+    @Test
+    public void should_return_400_when_post_inventory_unloading_fail() throws Exception {
+        Response post = post("/unloadings", new HashMap<>());
+        assertThat(post.getStatus(), is(400));
+    }
 }

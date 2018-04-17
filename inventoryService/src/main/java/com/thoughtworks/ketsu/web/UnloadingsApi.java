@@ -22,6 +22,9 @@ public class UnloadingsApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Map<String, Object> info) throws URISyntaxException {
+        if (!info.containsKey("product_id") || !info.containsKey("quantity") || !info.containsKey("pay")) {
+            return status(400).build();
+        }
         unloadingRepository.save(info);
         return info.containsKey("id") ?
                 created(new URI("/unloadings/" + info.get("id"))).build() :
