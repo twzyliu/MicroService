@@ -41,4 +41,10 @@ public class InventoryApiTest extends ApiSupport {
         Response get = get("/stores/1");
         assertThat(get.getStatus(), is(200));
     }
+
+    @Test
+    public void should_return_404_when_get_store_fail() throws Exception {
+        Response get = get("/stores/a");
+        assertThat(get.getStatus(), is(404));
+    }
 }
