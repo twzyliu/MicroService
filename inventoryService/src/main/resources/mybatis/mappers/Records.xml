@@ -10,4 +10,11 @@
         <result property="description" column="description"/>
         <result property="create_time" column="create_time"/>
     </resultMap>
+    <resultMap id="unloading" type="com.thoughtworks.ketsu.domain.unloadIng.Unloading">
+        <result property="id" column="id"/>
+        <result property="product_id" column="product_id"/>
+        <result property="quantity" column="quantity"/>
+        <result property="pay" column="pay"/>
+        <result property="create_time" column="create_time"/>
+    </resultMap>
 </mapper>

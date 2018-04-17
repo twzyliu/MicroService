@@ -12,7 +12,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(ApiTestRunner.class)
-public class InventoryApiTest extends ApiSupport {
+public class StoreApiTest extends ApiSupport {
 
     @Test
     public void should_return_201_when_post_store_success() throws Exception {
