@@ -26,6 +26,9 @@ public class InventoryApi {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Map<String, Object> info,
                            @Context InventoryRepository inventoryRepository) throws URISyntaxException {
+        if (!info.containsKey("inventory_items")) {
+            return status(400).build();
+        }
         info.put("store_id", store.getId());
         inventoryRepository.save(info);
         return info.containsKey("id") ?
