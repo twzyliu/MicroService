@@ -12,7 +12,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(ApiTestRunner.class)
-public class UnloadingApiTest extends ApiSupport{
+public class UnloadingApiTest extends ApiSupport {
     @Test
     public void should_return_201_when_post_inventory_unloading_success() throws Exception {
         Response post = post("/unloadings", new HashMap() {{
@@ -32,6 +32,12 @@ public class UnloadingApiTest extends ApiSupport{
     @Test
     public void should_return_200_when_get_inventory_unloadings_success() throws Exception {
         Response get = get("/unloadings");
+        assertThat(get.getStatus(), is(200));
+    }
+
+    @Test
+    public void should_return_200_when_get_inventory_unloading_success() throws Exception {
+        Response get = get("/unloadings/1");
         assertThat(get.getStatus(), is(200));
     }
 }

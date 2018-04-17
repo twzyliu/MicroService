@@ -6,4 +6,6 @@ public interface Unloadings {
     void save(Map<String, Object> info);
 
     Unloading getList();
+
+    Unloading getByid(String uid);
 }

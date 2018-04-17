@@ -35,4 +35,11 @@ public class UnloadingsApi {
     public Unloading getList() {
         return unloadingRepository.getList();
     }
+
+    @Path("{uid}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Unloading getById(@PathParam("uid") String uid) {
+        return unloadingRepository.getByid(uid);
+    }
 }

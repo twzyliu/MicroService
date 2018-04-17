@@ -9,4 +9,6 @@ public interface UnloadingMapper {
     void save(@Param("info") Map<String, Object> info);
 
     Unloading getList();
+
+    Unloading getById(@Param("uid") String uid);
 }

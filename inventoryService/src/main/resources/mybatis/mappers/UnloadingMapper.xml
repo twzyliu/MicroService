@@ -10,5 +10,10 @@
 
     <select id="getList" resultMap="records.unloading">
             SELECT * FROM unloadings
-     </select>
+    </select>
+
+    <select id="getById" resultMap="records.unloading">
+            SELECT * FROM unloadings
+            WHERE id=#{uid}
+    </select>
 </mapper>

@@ -20,4 +20,9 @@ public class UnloadingRepository implements Unloadings {
     public Unloading getList() {
         return unloadingMapper.getList();
     }
+
+    @Override
+    public Unloading getByid(String uid) {
+        return unloadingMapper.getById(uid);
+    }
 }
