@@ -10,4 +10,6 @@ public interface StoreMapper {
     void save(@Param("info") Map<String, Object> info);
 
     List<Store> getList();
+
+    Store getStore(@Param("sid") String sid);
 }

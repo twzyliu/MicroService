@@ -11,4 +11,8 @@
     <select id="getList" resultMap="records.store">
         SELECT * FROM stores
     </select>
+
+    <select id="getStore" resultMap="records.store">
+        SELECT * FROM stores WHERE id=#{sid}
+    </select>
 </mapper>

@@ -35,4 +35,10 @@ public class InventoryApiTest extends ApiSupport {
         Response get = get("/stores");
         assertThat(get.getStatus(), is(200));
     }
+
+    @Test
+    public void should_return_200_when_get_store_success() throws Exception {
+        Response get = get("/stores/1");
+        assertThat(get.getStatus(), is(200));
+    }
 }

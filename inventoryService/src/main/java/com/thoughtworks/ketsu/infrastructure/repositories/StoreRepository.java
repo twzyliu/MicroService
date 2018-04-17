@@ -7,6 +7,9 @@ import com.thoughtworks.ketsu.infrastructure.mybatis.mappers.StoreMapper;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import static java.util.Optional.*;
 
 public class StoreRepository implements Stores {
     @Inject
@@ -20,5 +23,11 @@ public class StoreRepository implements Stores {
     @Override
     public List<Store> getList() {
         return storeMapper.getList();
+    }
+
+    @Override
+    public Optional<Store> getById(String sid) {
+        Store store = storeMapper.getStore(sid);
+        return store == null ? empty() : of(store);
     }
 }
