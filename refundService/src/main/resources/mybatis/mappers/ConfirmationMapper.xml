@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtworks.ketsu.infrastructure.mybatis.mappers.ConfirmationMapper">
     <insert id="save" useGeneratedKeys="true" keyProperty="info.id" keyColumn="id">
-            INSERT INTO confirmations (return_order_id)
+            INSERT INTO refund_confirmations (return_order_id)
             VALUES (#{info.return_order_id});
     </insert>
     <select id="getConfirmation" resultMap="records.confirmation">
-            SELECT * FROM confirmations
+            SELECT * FROM refund_confirmations
             WHERE return_order_id=#{rid}
      </select>
 </mapper>

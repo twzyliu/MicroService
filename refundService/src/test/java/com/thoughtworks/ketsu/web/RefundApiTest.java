@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 public class RefundApiTest extends ApiSupport {
     @Test
     public void should_return_201_when_post_refund_success() throws Exception {
-        Response post = post("/return_orders/1/refund", new HashMap() {{
+        Response post = post("/return_orders/2/refund", new HashMap() {{
             put("amount", "90");
             put("return_order_id", "90");
         }});

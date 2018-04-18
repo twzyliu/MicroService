@@ -1,1 +1,1 @@
-insert into confirmations (return_order_id) values ("1");
+insert into refund_confirmations (return_order_id) values ("1");

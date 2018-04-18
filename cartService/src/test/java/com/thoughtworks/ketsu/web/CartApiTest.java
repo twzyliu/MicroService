@@ -15,8 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
 
@@ -92,7 +92,7 @@ public class CartApiTest extends ApiSupport {
 
     @Test
     public void should_return_200_when_get_cart() throws Exception {
-        Response get = get("/carts/1");
+        Response get = get("/carts/2");
         assertThat(get.getStatus(), is(200));
     }
 
