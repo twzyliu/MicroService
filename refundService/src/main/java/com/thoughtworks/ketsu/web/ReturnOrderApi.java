@@ -24,4 +24,9 @@ public class ReturnOrderApi {
     public RefundApi refundApi() {
         return new RefundApi(returnOrder);
     }
+
+    @Path("/confirmation")
+    public ConfirmationApi confirmationApi() {
+        return new ConfirmationApi(returnOrder);
+    }
 }
