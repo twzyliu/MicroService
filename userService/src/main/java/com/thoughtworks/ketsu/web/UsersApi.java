@@ -46,6 +46,10 @@ public class UsersApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public User getById(@PathParam("uid") String uid) {
-        return userRepository.getById(uid);
+        User user = userRepository.getById(uid);
+        if (user == null) {
+            throw new WebApplicationException(Status.NOT_FOUND);
+        }
+        return user;
     }
 }
