@@ -9,11 +9,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockserver.client.server.MockServerClient;
 import org.mockserver.junit.MockServerRule;
+import org.mockserver.model.Parameter;
 
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Integer.*;
 import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -39,17 +41,40 @@ public class ReturnOrderApiTest extends ApiSupport {
         String order_id = "1";
         String quantity = "9";
         String product_id = "1";
+        String price = "10";
+
+        Map order_item = new HashMap() {{
+            put("product_id", product_id);
+            put("quantity", quantity);
+        }};
+
+        Map order_map = new HashMap() {{
+            put("order_items", asList(order_item));
+            put("amount", parseInt(price) * parseInt(quantity));
+        }};
+
+        String get_order_body = new Gson().toJson(order_map, Map.class);
+        mockClient.when(
+                request()
+                        .withPath("/orders/" + order_id)
+                        .withMethod("GET")
+        ).respond(
+                response()
+                        .withStatusCode(200)
+                        .withBody(get_order_body)
+        );
 
         Map price_map = new HashMap() {{
-            put("order_items", "[{\"product_id\":\"" + product_id + "\",\"quantity\":\"" + quantity + "\"}]");
-            put("amount", "1");
+            put("product_id", product_id);
+            put("price", price);
         }};
 
         String get_body = new Gson().toJson(price_map, Map.class);
         mockClient.when(
                 request()
-                        .withPath("/orders/" + order_id)
+                        .withPath("/prices")
                         .withMethod("GET")
+                        .withQueryStringParameter(new Parameter("product_id", product_id))
         ).respond(
                 response()
                         .withStatusCode(200)
@@ -65,6 +90,7 @@ public class ReturnOrderApiTest extends ApiSupport {
             put("order_id", order_id);
             put("return_order_items", asList(return_order_item));
         }});
+
         assertThat(post.getStatus(), is(201));
     }
 }
