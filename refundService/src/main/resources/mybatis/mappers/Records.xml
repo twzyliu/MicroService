@@ -23,4 +23,10 @@
         <result property="amount" column="amount"/>
         <result property="create_time" column="create_time"/>
     </resultMap>
+
+    <resultMap id="confirmation" type="com.thoughtworks.ketsu.domain.confirmation.Confirmation">
+        <result property="id" column="id"/>
+        <result property="return_order_id" column="return_order_id"/>
+        <result property="create_time" column="create_time"/>
+    </resultMap>
 </mapper>

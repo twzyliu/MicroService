@@ -1,11 +1,15 @@
 package com.thoughtworks.ketsu.web;
 
+import com.thoughtworks.ketsu.domain.confirmation.Confirmation;
 import com.thoughtworks.ketsu.domain.returnOrder.ReturnOrder;
 import com.thoughtworks.ketsu.infrastructure.repositories.ConfirmationRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.RefundRepository;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -36,5 +40,10 @@ public class ConfirmationApi {
                 status(400).build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Confirmation getConfirmation(@Context ConfirmationRepository confirmationRepository) {
+        return confirmationRepository.getConfirmation(returnOrder.getId());
+    }
 
 }

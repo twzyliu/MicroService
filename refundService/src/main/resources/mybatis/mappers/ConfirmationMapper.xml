@@ -6,5 +6,9 @@
     <insert id="save" useGeneratedKeys="true" keyProperty="info.id" keyColumn="id">
             INSERT INTO confirmations (return_order_id)
             VALUES (#{info.return_order_id});
-        </insert>
+    </insert>
+    <select id="getConfirmation" resultMap="records.confirmation">
+            SELECT * FROM confirmations
+            WHERE return_order_id=#{rid}
+     </select>
 </mapper>
