@@ -19,4 +19,10 @@ public class ConfirmationApiTest extends ApiSupport{
         Response post = post("/return_orders/1/confirmation", new HashMap<>());
         assertThat(post.getStatus(), is(201));
     }
+
+    @Test
+    public void should_return_400_when_post_confirmation_fail() throws Exception {
+        Response post = post("/return_orders/2/confirmation", new HashMap<>());
+        assertThat(post.getStatus(), is(400));
+    }
 }
