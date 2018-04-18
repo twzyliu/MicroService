@@ -1,10 +1,13 @@
 package com.thoughtworks.ketsu.web;
 
+import com.thoughtworks.ketsu.domain.refund.Refund;
 import com.thoughtworks.ketsu.domain.returnOrder.ReturnOrder;
 import com.thoughtworks.ketsu.infrastructure.repositories.RefundRepository;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -28,9 +31,19 @@ public class RefundApi {
         if (!info.containsKey("amount") || !info.containsKey("return_order_id")) {
             return status(400).build();
         }
+        Refund refund = refundRepository.getRefund(returnOrder.getId());
+        if (refund != null) {
+            return status(204).build();
+        }
         refundRepository.save(info);
         return info.containsKey("id") ?
                 created(new URI("/return_orders/" + returnOrder.getId() + "/refunds")).build() :
                 status(400).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Refund getRefund(@Context RefundRepository refundRepository) {
+        return refundRepository.getRefund(returnOrder.getId());
     }
 }

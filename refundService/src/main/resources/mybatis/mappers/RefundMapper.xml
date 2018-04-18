@@ -7,4 +7,9 @@
             INSERT INTO refunds (amount, return_order_id)
             VALUES (#{info.amount}, #{info.return_order_id});
     </insert>
+
+    <select id="getRefund" resultMap="records.refund">
+            SELECT * FROM refunds
+            WHERE return_order_id=#{rid}
+     </select>
 </mapper>

@@ -4,4 +4,6 @@ import java.util.Map;
 
 public interface Refunds {
     void save(Map<String, Object> info);
+
+    Refund getRefund(String rid);
 }

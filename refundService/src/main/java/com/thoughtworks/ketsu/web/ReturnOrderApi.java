@@ -20,7 +20,7 @@ public class ReturnOrderApi {
         return returnOrder;
     }
 
-    @Path("/refunds")
+    @Path("/refund")
     public RefundApi refundApi() {
         return new RefundApi(returnOrder);
     }
