@@ -13,11 +13,11 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(ApiTestRunner.class)
-public class UserApiTest extends ApiSupport{
+public class UserApiTest extends ApiSupport {
     @Test
     public void should_return_201_when_post_user_success() throws Exception {
-        Response post = post("/users", new HashMap(){{
-            put("name","hades");
+        Response post = post("/users", new HashMap() {{
+            put("name", "hades");
         }});
         assertThat(post.getStatus(), is(201));
     }
@@ -30,8 +30,8 @@ public class UserApiTest extends ApiSupport{
 
     @Test
     public void should_return_201_when_put_user_success() throws Exception {
-        Response put = put("/users/1", new HashMap(){{
-            put("name","Andy");
+        Response put = put("/users/1", new HashMap() {{
+            put("name", "Andy");
         }});
         assertThat(put.getStatus(), is(201));
     }
@@ -40,5 +40,11 @@ public class UserApiTest extends ApiSupport{
     public void should_return_400_when_put_user_fail() throws Exception {
         Response put = put("/users/1", new HashMap<>());
         assertThat(put.getStatus(), is(400));
+    }
+
+    @Test
+    public void should_return_200_when_get_user_success() throws Exception {
+        Response get = get("/users/1");
+        assertThat(get.getStatus(), is(200));
     }
 }

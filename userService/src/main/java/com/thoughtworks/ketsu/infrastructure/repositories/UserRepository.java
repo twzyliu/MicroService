@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.infrastructure.repositories;
 
+import com.thoughtworks.ketsu.domain.user.User;
 import com.thoughtworks.ketsu.domain.user.Users;
 import com.thoughtworks.ketsu.infrastructure.mybatis.mappers.UserMapper;
 
@@ -18,5 +19,10 @@ public class UserRepository implements Users {
     @Override
     public void update(Map<String, Object> info) {
         userMapper.update(info);
+    }
+
+    @Override
+    public User getById(String uid) {
+        return userMapper.getById(uid);
     }
 }

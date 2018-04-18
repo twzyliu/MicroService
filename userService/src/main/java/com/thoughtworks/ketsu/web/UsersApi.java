@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.web;
 
+import com.thoughtworks.ketsu.domain.user.User;
 import com.thoughtworks.ketsu.infrastructure.repositories.UserRepository;
 
 import javax.inject.Inject;
@@ -39,5 +40,12 @@ public class UsersApi {
         info.put("user_id", uid);
         userRepository.update(info);
         return created(new URI("/users/" + info.get("id"))).build();
+    }
+
+    @Path("{uid}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public User getById(@PathParam("uid") String uid) {
+        return userRepository.getById(uid);
     }
 }
