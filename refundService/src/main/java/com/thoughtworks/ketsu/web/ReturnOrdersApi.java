@@ -3,6 +3,7 @@ package com.thoughtworks.ketsu.web;
 import com.google.gson.Gson;
 import com.thoughtworks.ketsu.domain.returnOrder.ReturnOrder;
 import com.thoughtworks.ketsu.infrastructure.repositories.ReturnOrderRepository;
+import com.twitter.util.Return;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -66,4 +67,24 @@ public class ReturnOrdersApi {
     public List<ReturnOrder> getList() {
         return returnOrderRepository.getList();
     }
+
+    @Path("{rid}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public ReturnOrder getById(@PathParam("rid") String rid) {
+        return returnOrderRepository.getById(rid);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

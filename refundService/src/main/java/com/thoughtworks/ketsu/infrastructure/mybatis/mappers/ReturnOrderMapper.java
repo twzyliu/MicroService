@@ -10,4 +10,6 @@ public interface ReturnOrderMapper {
     void save(@Param("info") Map<String, Object> info);
 
     List<ReturnOrder> getList();
+
+    ReturnOrder getById(String rid);
 }

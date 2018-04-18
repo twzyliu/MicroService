@@ -21,4 +21,9 @@ public class ReturnOrderRepository implements ReturnOrders {
     public List<ReturnOrder> getList() {
         return returnOrderMapper.getList();
     }
+
+    @Override
+    public ReturnOrder getById(String rid) {
+        return returnOrderMapper.getById(rid);
+    }
 }

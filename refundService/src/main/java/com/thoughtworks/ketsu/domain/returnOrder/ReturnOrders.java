@@ -7,4 +7,6 @@ public interface ReturnOrders {
     void save(Map<String, Object> info);
 
     List<ReturnOrder> getList();
+
+    ReturnOrder getById(String rid);
 }

@@ -16,4 +16,9 @@
     <select id="getList" resultMap="records.return_order">
             SELECT * FROM return_orders
      </select>
+
+    <select id="getById" resultMap="records.return_order">
+            SELECT * FROM return_orders
+            WHERE id=#{rid}
+     </select>
 </mapper>
