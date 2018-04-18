@@ -33,6 +33,9 @@ public class UsersApi {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public Response update(@PathParam("uid") String uid, Map<String, Object> info) throws URISyntaxException {
+        if (!info.containsKey("name")) {
+            return status(400).build();
+        }
         info.put("user_id", uid);
         userRepository.update(info);
         return created(new URI("/users/" + info.get("id"))).build();

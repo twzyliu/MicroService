@@ -35,4 +35,10 @@ public class UserApiTest extends ApiSupport{
         }});
         assertThat(put.getStatus(), is(201));
     }
+
+    @Test
+    public void should_return_400_when_put_user_fail() throws Exception {
+        Response put = put("/users/1", new HashMap<>());
+        assertThat(put.getStatus(), is(400));
+    }
 }
