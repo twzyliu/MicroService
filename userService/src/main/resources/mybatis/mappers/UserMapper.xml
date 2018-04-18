@@ -7,4 +7,11 @@
             INSERT INTO users (name)
             VALUES (#{info.name});
     </insert>
+    
+    <update id="update">
+            UPDATE users
+            SET
+            `name` = #{info.name}
+            WHERE id = #{info.user_id}
+        </update>
 </mapper>

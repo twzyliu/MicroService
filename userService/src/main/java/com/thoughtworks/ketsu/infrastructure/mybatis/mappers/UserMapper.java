@@ -6,4 +6,6 @@ import java.util.Map;
 
 public interface UserMapper {
     void save(@Param("info") Map<String, Object> info);
+
+    void update(@Param("info") Map<String, Object> info);
 }

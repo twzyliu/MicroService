@@ -14,4 +14,9 @@ public class UserRepository implements Users {
     public void save(Map<String, Object> info) {
         userMapper.save(info);
     }
+
+    @Override
+    public void update(Map<String, Object> info) {
+        userMapper.update(info);
+    }
 }

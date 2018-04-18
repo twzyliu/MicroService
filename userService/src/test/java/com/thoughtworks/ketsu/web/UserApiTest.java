@@ -27,4 +27,12 @@ public class UserApiTest extends ApiSupport{
         Response post = post("/users", new HashMap<>());
         assertThat(post.getStatus(), is(400));
     }
+
+    @Test
+    public void should_return_201_when_put_user_success() throws Exception {
+        Response put = put("/users/1", new HashMap(){{
+            put("name","Andy");
+        }});
+        assertThat(put.getStatus(), is(201));
+    }
 }
