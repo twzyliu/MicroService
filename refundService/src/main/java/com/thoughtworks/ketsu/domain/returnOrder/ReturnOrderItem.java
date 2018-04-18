@@ -3,14 +3,13 @@ package com.thoughtworks.ketsu.domain.returnOrder;
 import com.thoughtworks.ketsu.infrastructure.records.Record;
 import com.thoughtworks.ketsu.web.jersey.Routes;
 
-import java.util.List;
 import java.util.Map;
 
-public class ReturnOrder implements Record {
+public class ReturnOrderItem implements Record{
     private String id;
-    private String order_id;
-    private String amount;
-    private List<ReturnOrderItem> return_order_items;
+    private String return_order_id;
+    private String product_id;
+    private String quantity;
     private String create_time;
 
     @Override

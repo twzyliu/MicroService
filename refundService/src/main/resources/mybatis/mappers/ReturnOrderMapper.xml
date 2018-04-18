@@ -6,6 +6,10 @@
     <insert id="save" useGeneratedKeys="true" keyProperty="info.id" keyColumn="id">
             INSERT INTO return_orders (order_id, amount)
             VALUES (#{info.order_id}, #{info.order_id});
-
+            SET @LAST = LAST_INSERT_ID();
+            INSERT INTO return_order_items (return_order_id, product_id, quantity) VALUES
+            <foreach collection="info.return_order_items" item="item" open="(" separator="," close=")">
+                @LAST , #{item.product_id}, #{item.quantity}
+            </foreach>
         </insert>
 </mapper>
