@@ -12,13 +12,19 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(ApiTestRunner.class)
-public class RefundApiTest extends ApiSupport{
+public class RefundApiTest extends ApiSupport {
     @Test
     public void should_return_201_when_post_refund_success() throws Exception {
-        Response post = post("/return_orders/1/refunds", new HashMap(){{
-            put("amount","90");
-            put("return_order_id","90");
+        Response post = post("/return_orders/1/refunds", new HashMap() {{
+            put("amount", "90");
+            put("return_order_id", "90");
         }});
         assertThat(post.getStatus(), is(201));
+    }
+
+    @Test
+    public void should_return_400_when_post_refund_fail() throws Exception {
+        Response post = post("/return_orders/1/refunds", new HashMap<>());
+        assertThat(post.getStatus(), is(400));
     }
 }
