@@ -3,7 +3,6 @@ package com.thoughtworks.ketsu.web;
 import com.google.gson.Gson;
 import com.thoughtworks.ketsu.domain.returnOrder.ReturnOrder;
 import com.thoughtworks.ketsu.infrastructure.repositories.ReturnOrderRepository;
-import com.twitter.util.Return;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -15,8 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 import static com.thoughtworks.ketsu.util.HttpClient.doGet;
-import static java.lang.Integer.*;
+import static java.lang.Integer.parseInt;
 import static java.lang.System.getenv;
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.created;
 import static javax.ws.rs.core.Response.status;
 
@@ -72,7 +72,11 @@ public class ReturnOrdersApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public ReturnOrder getById(@PathParam("rid") String rid) {
-        return returnOrderRepository.getById(rid);
+        ReturnOrder return_order = returnOrderRepository.getById(rid);
+        if (return_order == null) {
+            throw new WebApplicationException(NOT_FOUND);
+        }
+        return return_order;
     }
 }
 

@@ -105,4 +105,10 @@ public class ReturnOrderApiTest extends ApiSupport {
         Response get = get("/return_orders/1");
         assertThat(get.getStatus(), is(200));
     }
+
+    @Test
+    public void should_return_404_when_get_returnOrder_fail() throws Exception {
+        Response get = get("/return_orders/a");
+        assertThat(get.getStatus(), is(404));
+    }
 }
