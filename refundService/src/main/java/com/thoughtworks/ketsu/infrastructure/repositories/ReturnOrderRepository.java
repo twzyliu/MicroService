@@ -7,6 +7,9 @@ import com.thoughtworks.ketsu.infrastructure.mybatis.mappers.ReturnOrderMapper;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import static java.util.Optional.*;
 
 public class ReturnOrderRepository implements ReturnOrders {
     @Inject
@@ -23,7 +26,8 @@ public class ReturnOrderRepository implements ReturnOrders {
     }
 
     @Override
-    public ReturnOrder getById(String rid) {
-        return returnOrderMapper.getById(rid);
+    public Optional<ReturnOrder> getById(String rid) {
+        ReturnOrder return_order = returnOrderMapper.getById(rid);
+        return return_order == null ? empty() : of(return_order);
     }
 }

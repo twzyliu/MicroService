@@ -2,7 +2,9 @@ package com.thoughtworks.ketsu.infrastructure.records;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
+import com.thoughtworks.ketsu.domain.refund.Refunds;
 import com.thoughtworks.ketsu.domain.returnOrder.ReturnOrders;
+import com.thoughtworks.ketsu.infrastructure.repositories.RefundRepository;
 import com.thoughtworks.ketsu.infrastructure.repositories.ReturnOrderRepository;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.*;
@@ -52,6 +54,7 @@ public class Models extends AbstractModule {
     protected void configure() {
         bindPersistence();
         bind(ReturnOrders.class).to(ReturnOrderRepository.class);
+        bind(Refunds.class).to(RefundRepository.class);
     }
 
     private void bindPersistence() {

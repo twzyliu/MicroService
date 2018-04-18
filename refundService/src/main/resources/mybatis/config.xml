@@ -36,5 +36,6 @@
         <mapper resource="mybatis/mappers/Records.xml"/>
         <mapper resource="mybatis/mappers/Columns.xml"/>
         <mapper resource="mybatis/mappers/ReturnOrderMapper.xml"/>
+        <mapper resource="mybatis/mappers/RefundMapper.xml"/>
     </mappers>
 </configuration>

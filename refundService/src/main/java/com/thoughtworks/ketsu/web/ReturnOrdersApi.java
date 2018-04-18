@@ -69,14 +69,9 @@ public class ReturnOrdersApi {
     }
 
     @Path("{rid}")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public ReturnOrder getById(@PathParam("rid") String rid) {
-        ReturnOrder return_order = returnOrderRepository.getById(rid);
-        if (return_order == null) {
-            throw new WebApplicationException(NOT_FOUND);
-        }
-        return return_order;
+    public ReturnOrderApi returnOrderApi(@PathParam("rid") String rid) {
+        return returnOrderRepository.getById(rid).map(ReturnOrderApi::new).
+                orElseThrow(() -> new WebApplicationException(NOT_FOUND));
     }
 }
 
