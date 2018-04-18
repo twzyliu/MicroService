@@ -1,12 +1,11 @@
 package com.thoughtworks.ketsu.web;
 
 import com.google.gson.Gson;
+import com.thoughtworks.ketsu.domain.returnOrder.ReturnOrder;
 import com.thoughtworks.ketsu.infrastructure.repositories.ReturnOrderRepository;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
@@ -60,5 +59,11 @@ public class ReturnOrdersApi {
         return price_json.contains("price") ?
                 price_map.get("price") + "" :
                 "-1";
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ReturnOrder> getList() {
+        return returnOrderRepository.getList();
     }
 }

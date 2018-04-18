@@ -93,4 +93,10 @@ public class ReturnOrderApiTest extends ApiSupport {
 
         assertThat(post.getStatus(), is(201));
     }
+
+    @Test
+    public void should_return_200_when_get_returnOrders_success() throws Exception {
+        Response get = get("/return_orders");
+        assertThat(get.getStatus(), is(200));
+    }
 }

@@ -8,7 +8,7 @@
         <result property="order_id" column="order_id"/>
         <result property="amount" column="amount"/>
         <result property="create_time" column="create_time"/>
-        <collection property="return_order_item" ofType="com.thoughtworks.ketsu.domain.returnOrder.ReturnOrderItem">
+        <collection property="return_order_items" ofType="com.thoughtworks.ketsu.domain.returnOrder.ReturnOrderItem">
             <id property="id" column="id"/>
             <result property="return_order_id" column="return_order_id"/>
             <result property="product_id" column="product_id"/>
