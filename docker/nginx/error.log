@@ -1,0 +1,2 @@
+2018/04/19 09:07:04 [error] 7#7: *1 open() "/etc/nginx/html/carts/1" failed (2: No such file or directory), client: 172.31.0.1, server: localhost, request: "GET /carts/1 HTTP/1.1", host: "127.0.0.1:8888"
+2018/04/19 09:08:29 [error] 7#7: *1 open() "/etc/nginx/html/users/1" failed (2: No such file or directory), client: 172.31.0.1, server: localhost, request: "GET /users/1 HTTP/1.1", host: "127.0.0.1:8888"
