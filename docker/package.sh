@@ -1,13 +1,15 @@
 #!/bin/sh
 
-for i in orderService productService priceService cartService inventoryService refundService userService
+# for i in order product price cart inventory refund user
+for i in order
 do
 echo "********************$i********************"
-cd ../$i
-./gradlew fC fM build
-cp ./build/distributions/$i.tar ../docker/
+cd ../$i"Service"
+export DB_HOST=$i"Mysql"
+gradle fC fM build
+cp ./build/distributions/$i"Service".tar ../docker/
 cd ../docker
-tar xf ./$i.tar
-rm ./$i.tar
+tar xf ./$i"Service".tar
+rm ./$i"Service".tar
 echo "********************$i********************"
 done  
