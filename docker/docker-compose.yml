@@ -1,0 +1,87 @@
+version: "3"
+services:
+
+  orderService:
+    image: java:8
+    container_name: orderService
+    ports:
+      - 20000:20000
+    volumes:
+      - ./orderService:/opt/web/code/orderService
+    working_dir: /opt/web/code/orderService
+    command: ["./bin/orderService", "fC", "fM", "test", "run"]
+
+  productService:
+    image: java:8
+    container_name: productService
+    ports:
+      - 20100:20100
+    volumes:
+      - ./productService:/opt/web/code/productService
+    working_dir: /opt/web/code/productService
+    command: ["./bin/productService", "fM", "test", "run"]
+
+  priceService:
+    image: java:8
+    container_name: priceService
+    ports:
+      - 20200:20200
+    volumes:
+      - ./priceService:/opt/web/code/priceService
+    working_dir: /opt/web/code/priceService
+    command: ["./bin/priceService", "fM", "test", "run"]
+
+  cartService:
+    image: java:8
+    container_name: cartService
+    ports:
+      - 20300:20300
+    volumes:
+      - ./cartService:/opt/web/code/cartService
+    working_dir: /opt/web/code/cartService
+    command: ["./bin/cartService", "fM", "test", "run"]
+
+  inventoryService:
+    image: java:8
+    container_name: inventoryService
+    ports:
+      - 20400:20400
+    volumes:
+      - ./inventoryService:/opt/web/code/inventoryService
+    working_dir: /opt/web/code/inventoryService
+    command: ["./bin/inventoryService", "fM", "test", "run"]
+
+  refundService:
+    image: java:8
+    container_name: refundService
+    ports:
+      - 20500:20500
+    volumes:
+      - ./refundService:/opt/web/code/refundService
+    working_dir: /opt/web/code/refundService
+    command: ["./bin/refundService", "fM", "test", "run"]
+
+  userService:
+    image: java:8
+    container_name: userService
+    ports:
+      - 20600:20600
+    volumes:
+      - ./userService:/opt/web/code/userService
+    working_dir: /opt/web/code/userService
+    command: ["./bin/userService", "fM", "test", "run"]
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+

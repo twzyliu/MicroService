@@ -25,7 +25,7 @@ public class MainServer {
 
         HttpServer server = null;
         try {
-            server = createHttpServer(URI.create("http://0.0.0.0:" + System.getenv().getOrDefault("SERVICE_PORT", "23334")));
+            server = createHttpServer(URI.create("http://0.0.0.0:" + System.getenv().getOrDefault("SERVICE_PORT", "20600")));
             context.deploy(server);
         } catch (Exception e) {
             e.printStackTrace();
