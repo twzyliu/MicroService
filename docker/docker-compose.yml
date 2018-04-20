@@ -7,16 +7,27 @@ services:
     volumes:
       - ../:/opt/web/code
     working_dir: /opt/web/code/docker
-    command: ["./package.sh"]
+    command: "./package.sh"
     links:
-      - orderMysql
-      - producrMysql
-      - priceMysql
-      - cartMysql
-      - inventoryMysql
-      - refundMysql
-      - userMysql
+      - mysql
 
+  mysql:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_USER: "root"  
+      MYSQL_PASSWORD: ""
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:  
+      - ./mysql:/var/lib/mysql
+  catete_db:
+    image: mysql
+    container_name: catete_db
+    command: bash -c "while [ `mysql -uroot -hmysql 2>/dev/null || echo 'sleep'` ];do sleep 1;done;mysql -uroot -hmysql -e 'create database order_d;create database product_d;create database price_d;create database cart_d;create database inventory_d;create database refund_d;create database user_d;'"
+    links:
+      - mysql
+    
   orderService:
     image: java:8
     container_name: orderService
@@ -25,27 +36,16 @@ services:
     volumes:
       - ./orderService:/opt/web/code/orderService
     working_dir: /opt/web/code/orderService
-    command: ["./bin/orderService"]
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/orderService'
     links:
-      - orderMysql
+      - mysql
       - priceService
     environment:
-      DB_HOST: orderMysql
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: order_d
       SERVICE_PORT: 20000
       PRICE_SERVICE_HOST: priceService
       PRICE_SERVICE_PORT: 20200
-  orderMysql:
-    image: mysql
-    container_name: orderMysql
-    environment:
-      MYSQL_USER: "root"  
-      MYSQL_PASSWORD: ""
-      MYSQL_ROOT_PASSWORD: ""
-      ON_CREATE_DB: "data_store"
-      MYSQL_DATABASE: "data_store"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    volumes:  
-      - ./orderMysql:/var/lib/mysql
 
   productService:
     image: java:8
@@ -55,24 +55,13 @@ services:
     volumes:
       - ./productService:/opt/web/code/productService
     working_dir: /opt/web/code/productService
-    command: ["./bin/productService"]
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/productService'
     links:
-      - producrMysql
+      - mysql
     environment:
-      DB_HOST: producrMysql
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: product_d
       SERVICE_PORT: 20100
-  producrMysql:
-    image: mysql
-    container_name: producrMysql
-    environment:
-      MYSQL_USER: "root"  
-      MYSQL_PASSWORD: ""
-      MYSQL_ROOT_PASSWORD: ""
-      ON_CREATE_DB: "data_store"
-      MYSQL_DATABASE: "data_store"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    volumes:  
-      - ./producrMysql:/var/lib/mysql
 
   priceService:
     image: java:8
@@ -82,24 +71,13 @@ services:
     volumes:
       - ./priceService:/opt/web/code/priceService
     working_dir: /opt/web/code/priceService
-    command: ["./bin/priceService"]
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/priceService'
     links:
-      - priceMysql
+      - mysql
     environment:
-      DB_HOST: priceMysql
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: price_d
       SERVICE_PORT: 20200
-  priceMysql:
-    image: mysql
-    container_name: priceMysql
-    environment:
-      MYSQL_USER: "root"  
-      MYSQL_PASSWORD: ""
-      MYSQL_ROOT_PASSWORD: ""
-      ON_CREATE_DB: "data_store"
-      MYSQL_DATABASE: "data_store"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    volumes:  
-      - ./priceMysql:/var/lib/mysql
 
   cartService:
     image: java:8
@@ -109,27 +87,16 @@ services:
     volumes:
       - ./cartService:/opt/web/code/cartService
     working_dir: /opt/web/code/cartService
-    command: ["./bin/cartService"]
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/cartService'
     links:
-      - cartMysql
+      - mysql
       - priceService
     environment:
-      DB_HOST: cartMysql
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: cart_d
       SERVICE_PORT: 20300
       PRICE_SERVICE_HOST: priceService
       PRICE_SERVICE_PORT: 20200
-  cartMysql:
-    image: mysql
-    container_name: cartMysql
-    environment:
-      MYSQL_USER: "root"  
-      MYSQL_PASSWORD: ""
-      MYSQL_ROOT_PASSWORD: ""
-      ON_CREATE_DB: "data_store"
-      MYSQL_DATABASE: "data_store"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    volumes:  
-      - ./cartMysql:/var/lib/mysql
 
   inventoryService:
     image: java:8
@@ -139,24 +106,13 @@ services:
     volumes:
       - ./inventoryService:/opt/web/code/inventoryService
     working_dir: /opt/web/code/inventoryService
-    command: ["./bin/inventoryService"]
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/inventoryService'
     links:
-      - inventoryMysql
+      - mysql
     environment:
-      DB_HOST: inventoryMysql
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: inventory_d
       SERVICE_PORT: 20400
-  inventoryMysql:
-    image: mysql
-    container_name: inventoryMysql
-    environment:
-      MYSQL_USER: "root"  
-      MYSQL_PASSWORD: ""
-      MYSQL_ROOT_PASSWORD: ""
-      ON_CREATE_DB: "data_store"
-      MYSQL_DATABASE: "data_store"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    volumes:  
-      - ./inventoryMysql:/var/lib/mysql
 
   refundService:
     image: java:8
@@ -166,30 +122,19 @@ services:
     volumes:
       - ./refundService:/opt/web/code/refundService
     working_dir: /opt/web/code/refundService
-    command: ["./bin/refundService"]
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/refundService'
     links:
-      - refundMysql
+      - mysql
       - orderService
       - priceService
     environment:
-      DB_HOST: refundMysql
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: refund_d
       SERVICE_PORT: 20500
       ORDER_SERVICE_HOST: orderService
       ORDER_SERVICE_PORT: 20000
       PRICE_SERVICE_HOST: priceService
       PRICE_SERVICE_PORT: 20200
-  refundMysql:
-    image: mysql
-    container_name: refundMysql
-    environment:
-      MYSQL_USER: "root"  
-      MYSQL_PASSWORD: ""
-      MYSQL_ROOT_PASSWORD: ""
-      ON_CREATE_DB: "data_store"
-      MYSQL_DATABASE: "data_store"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    volumes:  
-      - ./refundMysql:/var/lib/mysql
 
   userService:
     image: java:8
@@ -199,24 +144,13 @@ services:
     volumes:
       - ./userService:/opt/web/code/userService
     working_dir: /opt/web/code/userService
-    command: ["./bin/userService"]
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/userService'
     links:
-      - userMysql
+      - mysql
     environment:
-      DB_HOST: userMysql
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: user_d
       SERVICE_PORT: 20600
-  userMysql:
-    image: mysql
-    container_name: userMysql
-    environment:
-      MYSQL_USER: "root"  
-      MYSQL_PASSWORD: ""
-      MYSQL_ROOT_PASSWORD: ""
-      ON_CREATE_DB: "data_store"
-      MYSQL_DATABASE: "data_store"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    volumes:  
-      - ./userMysql:/var/lib/mysql
 
   web:  
     image: nginx  
