@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Price implements Record {
     private String id;
+    private String user_id;
     private String product_id;
     private String price;
     private String create_time;
@@ -28,10 +29,15 @@ public class Price implements Record {
         return create_time;
     }
 
+    public String getUser_id() {
+        return user_id;
+    }
+
     @Override
     public Map<String, Object> toRefJson(Routes routes) {
         return new HashMap() {{
             put("id", id);
+            put("user_id", user_id);
             put("product_id", product_id);
             put("price", price);
             put("create_time", create_time);

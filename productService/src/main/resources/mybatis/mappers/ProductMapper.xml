@@ -9,7 +9,7 @@
     </insert>
 
     <select id="getProducts" resultMap="records.product">
-        SELECT * FROM products
+        SELECT * FROM products WHERE user_id=#{uid}
     </select>
 
     <select id="getById" resultMap="records.product">

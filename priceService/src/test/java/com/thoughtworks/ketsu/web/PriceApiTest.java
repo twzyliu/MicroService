@@ -17,6 +17,7 @@ public class PriceApiTest extends ApiSupport {
     @Test
     public void should_return_201_when_post_price_success() throws Exception {
         Response post = post("/prices", new HashMap() {{
+            put("user_id", "1");
             put("product_id", "1");
             put("price", "999");
         }});

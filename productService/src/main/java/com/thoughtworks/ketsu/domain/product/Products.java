@@ -6,7 +6,7 @@ import java.util.Map;
 public interface Products {
     void save(Map<String, Object> info);
 
-    List<Product> getProducts();
+    List<Product> getProducts(String uid);
 
     Product getById(String pid);
 

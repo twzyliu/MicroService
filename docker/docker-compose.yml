@@ -47,21 +47,21 @@ services:
   #     PRICE_SERVICE_HOST: priceService
   #     PRICE_SERVICE_PORT: 20200
 
-  # productService:
-  #   image: java:8
-  #   container_name: productService
-  #   ports:
-  #     - 20100:20100
-  #   volumes:
-  #     - ./productService:/opt/web/code/productService
-  #   working_dir: /opt/web/code/productService
-  #   command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/productService'
-  #   links:
-  #     - mysql
-  #   environment:
-  #     DB_HOST: mysql
-  #     DB_ON_CREATE_DB: product_d
-  #     SERVICE_PORT: 20100
+  productService:
+    image: java:8
+    container_name: productService
+    ports:
+      - 20100:20100
+    volumes:
+      - ./productService:/opt/web/code/productService
+    working_dir: /opt/web/code/productService
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/productService'
+    links:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: product_d
+      SERVICE_PORT: 20100
 
   priceService:
     image: java:8
@@ -166,7 +166,7 @@ services:
     command: ["nginx", "-g", "daemon off;"]
     links:
       # - orderService
-      # - productService
+      - productService
       - priceService
       # - cartService
       # - inventoryService

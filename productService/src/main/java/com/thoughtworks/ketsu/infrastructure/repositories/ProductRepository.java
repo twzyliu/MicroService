@@ -18,8 +18,8 @@ public class ProductRepository implements Products{
     }
 
     @Override
-    public List<Product> getProducts() {
-        return productMapper.getProducts();
+    public List<Product> getProducts(String uid) {
+        return productMapper.getProducts(uid);
     }
 
     @Override

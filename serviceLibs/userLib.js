@@ -65,7 +65,7 @@ function get_user(user_id, server) {
     });
 
     if (_xhr.status == "200") {
-        return _xhr.responseText;
+        return JSON.parse(_xhr.responseText);
     } else if (_xhr.status == "404") {
         return "Not Found";
     }

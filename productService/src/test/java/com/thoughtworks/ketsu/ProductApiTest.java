@@ -31,7 +31,7 @@ public class ProductApiTest extends ApiSupport{
 
     @Test
     public void should_return_200_when_get_products_success() throws Exception {
-        Response get = get("/products");
+        Response get = session(target("/products").queryParam("user_id", "007").request()).get();
         assertThat(get.getStatus(), is(200));
     }
 

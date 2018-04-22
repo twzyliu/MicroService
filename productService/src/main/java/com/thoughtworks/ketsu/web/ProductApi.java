@@ -12,6 +12,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
+import static javax.ws.rs.core.Response.Status.FORBIDDEN;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.created;
 import static javax.ws.rs.core.Response.status;
@@ -24,7 +25,7 @@ public class ProductApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Map<String, Object> info) throws URISyntaxException {
-        if (!info.containsKey("user_id") || !info.containsKey("name") || !info.containsKey("description")) {
+        if (!info.containsKey("user_id") || !info.containsKey("name")) {
             return status(400).build();
         }
         productRepository.save(info);
@@ -35,8 +36,8 @@ public class ProductApi {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Product> getProducts() {
-        return productRepository.getProducts();
+    public List<Product> getProducts(@QueryParam("user_id") String uid) {
+        return productRepository.getProducts(uid);
     }
 
     @Path("/{pid}")
@@ -56,6 +57,10 @@ public class ProductApi {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response update(@PathParam("pid") String pid,
                            Map<String, Object> info) throws URISyntaxException {
+        Product product = productRepository.getById(pid);
+        if (!product.getUser_id().equals(info.get("user_id") + "")) {
+            throw new WebApplicationException(FORBIDDEN);
+        }
         info.put("pid", pid);
         productRepository.update(info);
         return created(new URI("/products/" + pid)).build();

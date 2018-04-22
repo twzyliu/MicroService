@@ -9,7 +9,7 @@ import java.util.Map;
 public interface ProductMapper {
     void save(@Param("info") Map<String, Object> info);
 
-    List<Product> getProducts();
+    List<Product> getProducts(@Param("uid") String uid);
 
     Product getById(@Param("pid") String pid);
 

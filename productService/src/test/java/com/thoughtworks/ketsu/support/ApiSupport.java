@@ -118,7 +118,7 @@ public class ApiSupport {
         return test.target(uri.getPath());
     }
 
-    private Invocation.Builder session(Invocation.Builder request) {
+    public Invocation.Builder session(Invocation.Builder request) {
         return request.header("Authorization", token);
     }
 
