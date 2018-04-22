@@ -1,3 +1,4 @@
 /task/~$*
 /docker/mysql/
 /docker/*Service/
+/serviceLibs/*html

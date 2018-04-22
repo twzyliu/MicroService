@@ -21,7 +21,7 @@ public class UsersApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Map<String, Object> info) throws URISyntaxException {
-        if (!info.containsKey("name")) {
+        if (!info.containsKey("name") || "".equals(info.get("name") + "")) {
             return status(400).build();
         }
         userRepository.save(info);

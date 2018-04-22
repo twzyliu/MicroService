@@ -8,7 +8,7 @@
             VALUES (#{info.name});
     </insert>
 
-    <update id="update">
+    <update id="update" useGeneratedKeys="true" keyProperty="info.id" keyColumn="id">
             UPDATE users
             SET
             `name` = #{info.name}
