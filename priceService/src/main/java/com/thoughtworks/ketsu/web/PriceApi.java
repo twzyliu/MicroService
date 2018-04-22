@@ -22,6 +22,7 @@ public class PriceApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Map<String, Object> info) throws URISyntaxException {
+        // todo check productid and userid
         if (!info.containsKey("product_id") || !info.containsKey("price")) {
             return status(400).build();
         }
