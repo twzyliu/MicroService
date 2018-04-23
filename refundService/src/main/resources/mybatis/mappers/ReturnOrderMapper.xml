@@ -14,11 +14,12 @@
     </insert>
 
     <select id="getList" resultMap="records.return_order">
-            SELECT * FROM return_orders
+            SELECT * FROM return_orders o, return_order_items i
+            WHERE o.id=i.return_order_id
      </select>
 
     <select id="getById" resultMap="records.return_order">
-            SELECT * FROM return_orders
-            WHERE id=#{rid}
+            SELECT * FROM return_orders o, return_order_items i
+            WHERE o.id=#{rid} AND o.id=i.return_order_id
      </select>
 </mapper>

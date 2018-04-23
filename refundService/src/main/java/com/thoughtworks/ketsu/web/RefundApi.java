@@ -28,16 +28,17 @@ public class RefundApi {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Map<String, Object> info,
                            @Context RefundRepository refundRepository) throws URISyntaxException {
-        if (!info.containsKey("amount") || !info.containsKey("return_order_id")) {
+        if (!info.containsKey("amount")) {
             return status(400).build();
         }
+        info.put("return_order_id", returnOrder.getId());
         Refund refund = refundRepository.getRefund(returnOrder.getId());
         if (refund != null) {
             return status(204).build();
         }
         refundRepository.save(info);
         return info.containsKey("id") ?
-                created(new URI("/return_orders/" + returnOrder.getId() + "/refunds")).build() :
+                created(new URI("/return_orders/" + returnOrder.getId() + "/refund")).build() :
                 status(400).build();
     }
 
