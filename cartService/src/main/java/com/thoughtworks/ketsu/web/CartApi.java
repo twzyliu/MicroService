@@ -39,7 +39,7 @@ public class CartApi {
         info.put("amount", amount);
         cartRepository.save(info);
         return info.containsKey("id") ?
-                created(new URI("/carts")).build() :
+                created(new URI("/carts/" + info.get("id"))).build() :
                 status(400).build();
     }
 

@@ -79,24 +79,24 @@ services:
       DB_ON_CREATE_DB: price_d
       SERVICE_PORT: 20200
 
-  # cartService:
-  #   image: java:8
-  #   container_name: cartService
-  #   ports:
-  #     - 20300:20300
-  #   volumes:
-  #     - ./cartService:/opt/web/code/cartService
-  #   working_dir: /opt/web/code/cartService
-  #   command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/cartService'
-  #   links:
-  #     - mysql
-  #     - priceService
-  #   environment:
-  #     DB_HOST: mysql
-  #     DB_ON_CREATE_DB: cart_d
-  #     SERVICE_PORT: 20300
-  #     PRICE_SERVICE_HOST: priceService
-  #     PRICE_SERVICE_PORT: 20200
+  cartService:
+    image: java:8
+    container_name: cartService
+    ports:
+      - 20300:20300
+    volumes:
+      - ./cartService:/opt/web/code/cartService
+    working_dir: /opt/web/code/cartService
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/cartService'
+    links:
+      - mysql
+      - priceService
+    environment:
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: cart_d
+      SERVICE_PORT: 20300
+      PRICE_SERVICE_HOST: priceService
+      PRICE_SERVICE_PORT: 20200
 
   # inventoryService:
   #   image: java:8
