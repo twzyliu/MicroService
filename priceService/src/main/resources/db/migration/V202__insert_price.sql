@@ -1,1 +1,1 @@
-insert into prices (user_id, product_id, price) values ("007", "100", "777");
+insert into prices (user_id, product_id, price) values ("007", "1", "777");

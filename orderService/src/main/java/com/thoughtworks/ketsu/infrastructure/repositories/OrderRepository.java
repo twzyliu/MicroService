@@ -21,8 +21,8 @@ public class OrderRepository implements Orders {
     }
 
     @Override
-    public List<Order> getOrders() {
-        return orderMapper.getOrders();
+    public List<Order> getOrders(String uid) {
+        return orderMapper.getOrders(uid);
     }
 
     @Override

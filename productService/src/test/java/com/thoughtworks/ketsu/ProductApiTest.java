@@ -50,6 +50,7 @@ public class ProductApiTest extends ApiSupport{
     @Test
     public void should_return_201_when_put_product_success() throws Exception {
         Response put = put("/products/1", new HashMap() {{
+            put("user_id", "007");
             put("name", "pen");
             put("description", "green");
         }});

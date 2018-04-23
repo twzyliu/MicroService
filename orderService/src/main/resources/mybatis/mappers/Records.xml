@@ -21,6 +21,7 @@
 
     <resultMap id="payment" type="com.thoughtworks.ketsu.domain.payment.Payment">
         <result property="id" column="id"/>
+        <result property="user_id" column="user_id"/>
         <result property="order_id" column="order_id"/>
         <result property="pay_type" column="pay_type"/>
         <result property="create_time" column="create_time"/>

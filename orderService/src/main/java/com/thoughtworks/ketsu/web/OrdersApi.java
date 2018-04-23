@@ -50,8 +50,8 @@ public class OrdersApi {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Order> getOrders() {
-        return orderRepository.getOrders();
+    public List<Order> getOrders(@QueryParam("user_id") String uid) {
+        return orderRepository.getOrders(uid);
     }
 
     @Path("/{oid}")

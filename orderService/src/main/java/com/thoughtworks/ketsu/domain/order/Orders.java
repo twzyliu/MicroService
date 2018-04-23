@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface Orders {
     void save(Map<String, Object> info);
 
-    List<Order> getOrders();
+    List<Order> getOrders(String uid);
 
     Optional<Order> getById(String iid);
 }

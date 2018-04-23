@@ -9,7 +9,7 @@ import java.util.Map;
 public interface OrderMapper {
     void save(@Param("info") Map<String, Object> info);
 
-    List<Order> getOrders();
+    List<Order> getOrders(@Param("uid") String uid);
 
     Order getById(@Param("iid") String iid);
 }

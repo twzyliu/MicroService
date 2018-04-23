@@ -28,24 +28,27 @@ services:
     links:
       - mysql
     
-  # orderService:
-  #   image: java:8
-  #   container_name: orderService
-  #   ports:
-  #     - 20000:20000
-  #   volumes:
-  #     - ./orderService:/opt/web/code/orderService
-  #   working_dir: /opt/web/code/orderService
-  #   command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/orderService'
-  #   links:
-  #     - mysql
-  #     - priceService
-  #   environment:
-  #     DB_HOST: mysql
-  #     DB_ON_CREATE_DB: order_d
-  #     SERVICE_PORT: 20000
-  #     PRICE_SERVICE_HOST: priceService
-  #     PRICE_SERVICE_PORT: 20200
+  orderService:
+    image: java:8
+    container_name: orderService
+    ports:
+      - 20000:20000
+    volumes:
+      - ./orderService:/opt/web/code/orderService
+    working_dir: /opt/web/code/orderService
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/orderService'
+    links:
+      - mysql
+      - priceService
+      - inventoryService
+    environment:
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: order_d
+      SERVICE_PORT: 20000
+      PRICE_SERVICE_HOST: priceService
+      PRICE_SERVICE_PORT: 20200
+      INVENTORY_SERVICE_HOST: inventoryService
+      INVENTORY_SERVICE_PORT: 20400
 
   productService:
     image: java:8
@@ -98,43 +101,43 @@ services:
       PRICE_SERVICE_HOST: priceService
       PRICE_SERVICE_PORT: 20200
 
-  # inventoryService:
-  #   image: java:8
-  #   container_name: inventoryService
-  #   ports:
-  #     - 20400:20400
-  #   volumes:
-  #     - ./inventoryService:/opt/web/code/inventoryService
-  #   working_dir: /opt/web/code/inventoryService
-  #   command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/inventoryService'
-  #   links:
-  #     - mysql
-  #   environment:
-  #     DB_HOST: mysql
-  #     DB_ON_CREATE_DB: inventory_d
-  #     SERVICE_PORT: 20400
+  inventoryService:
+    image: java:8
+    container_name: inventoryService
+    ports:
+      - 20400:20400
+    volumes:
+      - ./inventoryService:/opt/web/code/inventoryService
+    working_dir: /opt/web/code/inventoryService
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/inventoryService'
+    links:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: inventory_d
+      SERVICE_PORT: 20400
 
-  # refundService:
-  #   image: java:8
-  #   container_name: refundService
-  #   ports:
-  #     - 20500:20500
-  #   volumes:
-  #     - ./refundService:/opt/web/code/refundService
-  #   working_dir: /opt/web/code/refundService
-  #   command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/refundService'
-  #   links:
-  #     - mysql
-  #     - orderService
-  #     - priceService
-  #   environment:
-  #     DB_HOST: mysql
-  #     DB_ON_CREATE_DB: refund_d
-  #     SERVICE_PORT: 20500
-  #     ORDER_SERVICE_HOST: orderService
-  #     ORDER_SERVICE_PORT: 20000
-  #     PRICE_SERVICE_HOST: priceService
-  #     PRICE_SERVICE_PORT: 20200
+  refundService:
+    image: java:8
+    container_name: refundService
+    ports:
+      - 20500:20500
+    volumes:
+      - ./refundService:/opt/web/code/refundService
+    working_dir: /opt/web/code/refundService
+    command: bash -c 'while [ ! -d bin ];do sleep 1;done;./bin/refundService'
+    links:
+      - mysql
+      - orderService
+      - priceService
+    environment:
+      DB_HOST: mysql
+      DB_ON_CREATE_DB: refund_d
+      SERVICE_PORT: 20500
+      ORDER_SERVICE_HOST: orderService
+      ORDER_SERVICE_PORT: 20000
+      PRICE_SERVICE_HOST: priceService
+      PRICE_SERVICE_PORT: 20200
 
   userService:
     image: java:8
@@ -165,12 +168,12 @@ services:
       - NGINX_PORT=80
     command: ["nginx", "-g", "daemon off;"]
     links:
-      # - orderService
+      - orderService
       - productService
       - priceService
-      # - cartService
-      # - inventoryService
-      # - refundService
+      - cartService
+      - inventoryService
+      - refundService
       - userService
   
   

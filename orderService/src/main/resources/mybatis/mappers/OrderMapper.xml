@@ -14,7 +14,7 @@
     </insert>
 
     <select id="getOrders" resultMap="records.order">
-        SELECT * FROM orders o, order_items i WHERE o.id=i.order_id
+        SELECT * FROM orders o, order_items i WHERE o.id=i.order_id AND o.user_id=#{uid}
     </select>
 
     <select id="getById" resultMap="records.order">
