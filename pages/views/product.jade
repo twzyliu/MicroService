@@ -1,0 +1,34 @@
+doctype html
+html
+    head
+        script(type="text/javascript", src="/javascripts/productLib.js")
+        script(type="text/javascript", src="/javascripts/priceLib.js")
+    body
+        h1 Product
+        div(style="float:left")  ID :
+        div(id="product_id")
+        div(style="float:left")  Name :
+        div(id="product_name")
+        div(style="float:left")  Description :
+        div(id="product_description")
+        div(style="float:left")  Price:
+        div
+            input(type="text", id="product_price")
+        div(style="float:left")  CreateTime :
+        div(id="product_create_time")
+        input(type="submit", value="Submit Price", onclick="_create_price()")
+        h2(id='response')
+
+        script(type="text/javascript").
+            var _product = get_product(1);
+            document.getElementById("product_id").innerText = _product.id;
+            document.getElementById("product_name").innerText = _product.name;
+            document.getElementById("product_description").innerText = _product.description;
+            document.getElementById("product_price").value = _product.price;
+            document.getElementById("product_create_time").innerText = _product.create_time;
+            function _create_price() {
+                var _price = document.getElementById('product_price').value;
+                var response = create_price(1, 1, _price);
+                document.getElementById("response").innerText = response.split("/")[3];
+
+            }

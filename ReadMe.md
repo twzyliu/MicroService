@@ -12,3 +12,4 @@
 * /userService 用户管理服务
 * /docker 容器部署 
 * /serviceLibs 前端Libs
+* /pages 前端页面
