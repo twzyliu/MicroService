@@ -38,7 +38,7 @@ public class StoreApi {
         return created(new URI("/stores/" + store.getId())).build();
     }
 
-    @Path("/inventories")
+    @Path("/inventory")
     public InventoryApi inventoryApi() {
         return new InventoryApi(store);
     }

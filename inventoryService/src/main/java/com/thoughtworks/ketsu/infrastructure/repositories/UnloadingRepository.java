@@ -5,6 +5,7 @@ import com.thoughtworks.ketsu.domain.unloadIng.Unloadings;
 import com.thoughtworks.ketsu.infrastructure.mybatis.mappers.UnloadingMapper;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Map;
 
 public class UnloadingRepository implements Unloadings {
@@ -17,7 +18,7 @@ public class UnloadingRepository implements Unloadings {
     }
 
     @Override
-    public Unloading getList() {
+    public List<Unloading> getList() {
         return unloadingMapper.getList();
     }
 

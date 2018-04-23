@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 import java.util.Map;
 
 import static javax.ws.rs.core.Response.created;
@@ -36,13 +35,13 @@ public class InventoryApi {
         info.put("store_id", store.getId());
         inventoryRepository.save(info);
         return info.containsKey("id") ?
-                created(new URI("/stores/" + store.getId() + "/inventories/" + info.get("id"))).build() :
+                created(new URI("/stores/" + store.getId() + "/inventory")).build() :
                 status(400).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Inventory> getList(@Context InventoryRepository inventoryRepository) {
-        return inventoryRepository.getList(store.getId());
+    public Inventory getInventory(@Context InventoryRepository inventoryRepository) {
+        return inventoryRepository.getInventory(store.getId());
     }
 }

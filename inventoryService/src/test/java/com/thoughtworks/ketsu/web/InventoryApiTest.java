@@ -21,7 +21,7 @@ public class InventoryApiTest extends ApiSupport {
             put("product_id", "1");
             put("quantity", "1000");
         }};
-        Response post = post("/stores/1/inventories", new HashMap() {{
+        Response post = post("/stores/1/inventory", new HashMap() {{
             put("inventory_items", asList(item_map));
         }});
         assertThat(post.getStatus(), is(201));
@@ -29,13 +29,13 @@ public class InventoryApiTest extends ApiSupport {
 
     @Test
     public void should_return_400_when_post_inventory_fail() throws Exception {
-        Response post = post("/stores/1/inventories", new HashMap<>());
+        Response post = post("/stores/1/inventory", new HashMap<>());
         assertThat(post.getStatus(), is(400));
     }
 
     @Test
     public void should_return_200_when_get_inventory_success() throws Exception {
-        Response get = get("/stores/1/inventories");
+        Response get = get("/stores/1/inventory");
         assertThat(get.getStatus(), is(200));
     }
 }

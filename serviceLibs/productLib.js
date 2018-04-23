@@ -32,7 +32,6 @@ function create_product(user_id, name, description, server) {
     }
 }
 
-
 function get_products(user_id, server) {
     var _xhr;
     var _server = (server || "http://127.0.0.1:8888");

@@ -34,7 +34,7 @@ public class PriceApiTest extends ApiSupport {
 
     @Test
     public void should_return_200_when_get_price() throws Exception {
-        Response get = session(target("/prices").queryParam("product_id", "100").request()).get();
+        Response get = session(target("/prices").queryParam("product_id", "1").request()).get();
         assertThat(get.getStatus(), is(200));
     }
 }

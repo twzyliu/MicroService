@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Integer.parseInt;
+
 public class InventoryRepository implements Inventories {
     @Inject
     InventoryMapper inventoryMapper;
@@ -18,7 +20,17 @@ public class InventoryRepository implements Inventories {
     }
 
     @Override
-    public List<Inventory> getList(String sid) {
-        return inventoryMapper.getList(sid);
+    public Inventory getInventory(String sid) {
+        List<Inventory> inventoryList = inventoryMapper.getList(sid);
+        if (inventoryList.size() == 0) {
+            return null;
+        }
+        Inventory new_inventory = inventoryList.get(0);
+        for (Inventory inventory : inventoryList) {
+            if (parseInt(inventory.getId()) > parseInt(new_inventory.getId())) {
+                new_inventory = inventory;
+            }
+        }
+        return new_inventory;
     }
 }

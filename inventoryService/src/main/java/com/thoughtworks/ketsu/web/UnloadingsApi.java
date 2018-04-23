@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Map;
 
 import static javax.ws.rs.core.Response.*;
@@ -32,7 +33,7 @@ public class UnloadingsApi {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Unloading getList() {
+    public List<Unloading> getList() {
         return unloadingRepository.getList();
     }
 
